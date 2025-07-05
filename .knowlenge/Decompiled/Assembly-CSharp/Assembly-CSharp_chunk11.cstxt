@@ -1090,12 +1090,12 @@ public class DamageRenderer : MonoBehaviour, IClientComponent
 	[SerializeField]
 	private float maxDamageOpacity = 0.9f;
 
-	[SerializeField]
 	[HideInInspector]
+	[SerializeField]
 	private List<DamageShowingRenderer> damageShowingRenderers;
 
-	[SerializeField]
 	[HideInInspector]
+	[SerializeField]
 	private List<GlassPane> damageShowingGlassRenderers;
 }
 
@@ -1122,8 +1122,8 @@ using UnityEngine;
 
 public class DiverPropulsionVehicleAudio : MonoBehaviour
 {
-	[SerializeField]
 	[Header("Engine")]
+	[SerializeField]
 	private SoundDefinition engineStartSound;
 
 	[SerializeField]
@@ -1185,8 +1185,8 @@ using UnityEngine;
 
 public abstract class GroundVehicle : BaseVehicle, IEngineControllerUser, IEntity, TriggerHurtNotChild.IHurtTriggerUser
 {
-	[SerializeField]
 	[Header("GroundVehicle")]
+	[SerializeField]
 	public GroundVehicleAudio gvAudio;
 
 	[SerializeField]
@@ -1531,8 +1531,8 @@ public abstract class GroundVehicleAudio : MonoBehaviour, IClientComponent
 	[SerializeField]
 	private float overallVolume = 1f;
 
-	[Header("Water")]
 	[SerializeField]
+	[Header("Water")]
 	private SoundDefinition waterSplashSoundDef;
 
 	[SerializeField]
@@ -1898,8 +1898,8 @@ public abstract class BaseHelicopter : BaseVehicle, SeekerTarget.ISeekerTargetOw
 	[SerializeField]
 	public float altForceDotMin = 0.85f;
 
-	[SerializeField]
 	[Range(0.1f, 0.95f)]
+	[SerializeField]
 	public float liftFraction = 0.25f;
 
 	[SerializeField]
@@ -5444,8 +5444,8 @@ public class RidableHorseAnimation : EntityComponent<RidableHorse>, IClientCompo
 	[SerializeField]
 	public LegsAnimator legsAnimator;
 
-	[SerializeField]
 	[Space]
+	[SerializeField]
 	private Transform backHipTransform;
 
 	[SerializeField]
@@ -5454,9 +5454,9 @@ public class RidableHorseAnimation : EntityComponent<RidableHorse>, IClientCompo
 	[SerializeField]
 	private Vector3 skiddingHipRotation;
 
-	[SerializeField]
-	[Range(0f, 1f)]
 	[Header("Head")]
+	[Range(0f, 1f)]
+	[SerializeField]
 	private float headBlend = 1f;
 
 	[ReadOnly]
@@ -5478,8 +5478,8 @@ public class RidableHorseAnimation : EntityComponent<RidableHorse>, IClientCompo
 
 	public Vector3 headLookOffset = Vector3.zero;
 
-	[Header("Spine")]
 	[Range(0f, 1f)]
+	[Header("Spine")]
 	[SerializeField]
 	private float spineBlend = 0.5f;
 
@@ -5492,20 +5492,20 @@ public class RidableHorseAnimation : EntityComponent<RidableHorse>, IClientCompo
 
 	public float spineYawInertiaFactor = 150f;
 
-	[SerializeField]
 	[ReadOnly]
+	[SerializeField]
 	private Quaternion[] targetNeckRotations;
 
-	[SerializeField]
 	[ReadOnly]
+	[SerializeField]
 	private Quaternion[] targetSpineRotations;
 
-	[SerializeField]
 	[ReadOnly]
+	[SerializeField]
 	private Vector3[] localSpinePositions;
 
-	[ReadOnly]
 	[SerializeField]
+	[ReadOnly]
 	private Vector3 originalHipPosition;
 
 	[SerializeField]
@@ -5560,8 +5560,8 @@ public class RidableHorseAudio : FacepunchBehaviour, IClientComponent
 	[SerializeField]
 	private string BaseFolder;
 
-	[Space]
 	[SerializeField]
+	[Space]
 	private SoundDefinition skidLoopSoundDef;
 
 	[SerializeField]
@@ -6467,8 +6467,8 @@ using UnityEngine;
 
 public abstract class BaseModularVehicle : GroundVehicle, IPrefabPreProcess, PlayerInventory.ICanMoveFrom
 {
-	[SerializeField]
 	[Header("Modular Vehicle")]
+	[SerializeField]
 	public List<ModularVehicleSocket> moduleSockets;
 
 	[SerializeField]
@@ -8529,12 +8529,12 @@ using UnityEngine;
 
 public class SnowmobileAudio : GroundVehicleAudio
 {
-	[SerializeField]
 	[Header("Engine")]
+	[SerializeField]
 	private EngineAudioSet engineAudioSet;
 
-	[Header("Skis")]
 	[SerializeField]
+	[Header("Skis")]
 	private AnimationCurve skiGainCurve;
 
 	[SerializeField]
@@ -8649,8 +8649,8 @@ using UnityEngine;
 
 public class SoccerBall : BaseCombatEntity
 {
-	[Header("Soccer Ball")]
 	[SerializeField]
+	[Header("Soccer Ball")]
 	private Rigidbody rigidBody;
 
 	[SerializeField]
@@ -8966,8 +8966,8 @@ using UnityEngine;
 
 public class SubmarineAudio : MonoBehaviour
 {
-	[Header("Engine")]
 	[SerializeField]
+	[Header("Engine")]
 	private SoundDefinition engineStartSound;
 
 	[SerializeField]
@@ -9001,8 +9001,8 @@ public class SubmarineAudio : MonoBehaviour
 	[SerializeField]
 	private SoundDefinition waterSubmergeSoundDef;
 
-	[Header("Interior")]
 	[SerializeField]
+	[Header("Interior")]
 	private SoundDefinition activeLoopDef;
 
 	[SerializeField]
@@ -9046,8 +9046,8 @@ using UnityEngine;
 
 public class SubmarineDuo : BaseSubmarine
 {
-	[SerializeField]
 	[Header("Duo Sub Seating & Controls")]
+	[SerializeField]
 	private Transform steeringWheel;
 
 	[SerializeField]
@@ -11326,15 +11326,15 @@ public class TrainCouplingController
 	public bool TryCouple(TrainCar them, TriggerTrainCollisions.Location ourLocation)
 	{
 		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00dd: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e2: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00f2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0109: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0114: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fd: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0102: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0119: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0124: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0129: Unknown result type (might be due to invalid IL or missing references)
 		TrainCoupling trainCoupling = ((ourLocation == TriggerTrainCollisions.Location.Front) ? frontCoupling : rearCoupling);
 		if (!trainCoupling.isValid)
 		{
@@ -11345,6 +11345,10 @@ public class TrainCouplingController
 			return false;
 		}
 		if (TimeSince.op_Implicit(trainCoupling.timeSinceCouplingBlock) < 1.5f)
+		{
+			return false;
+		}
+		if ((Object)(object)them == (Object)(object)owner)
 		{
 			return false;
 		}
@@ -12695,7 +12699,7 @@ public class TriggerTrainCollisions : TriggerBase
 			if ((Object)(object)componentInParent != (Object)null)
 			{
 				TrainCar componentInParent2 = obj.GetComponentInParent<TrainCar>();
-				if ((Object)(object)componentInParent2 != (Object)null)
+				if ((Object)(object)componentInParent2 != (Object)null && (Object)(object)componentInParent2 != (Object)(object)owner)
 				{
 					trainContents.Add(componentInParent2);
 					if (owner.coupling != null)
@@ -22274,8 +22278,8 @@ public class EffectRecycle : BaseMonoBehaviour, IClientComponent, IRagdollInhert
 		DetachWaitDestroy
 	}
 
-	[FormerlySerializedAs("lifeTime")]
 	[ReadOnly]
+	[FormerlySerializedAs("lifeTime")]
 	public float detachTime;
 
 	[FormerlySerializedAs("lifeTime")]
@@ -23002,8 +23006,8 @@ public class FakePhysicsRope : FacepunchBehaviour, IClientComponent
 
 	public Vector3 endPointOffset;
 
-	[Range(2f, 100f)]
 	[Header("Settings")]
+	[Range(2f, 100f)]
 	public int linePoints = 10;
 
 	[Tooltip("Value highly dependent on use case, a metal cable would have high stiffness, a rubber rope would have a low one")]
@@ -23231,8 +23235,8 @@ public class FoliagePlacement : ScriptableObject
 	[Header("Randomization")]
 	public float RandomScaling = 0.2f;
 
-	[Header("Placement Range")]
 	[MinMax(0f, 1f)]
+	[Header("Placement Range")]
 	public MinMax Range = new MinMax(0f, 1f);
 
 	public float RangeFade = 0.1f;
@@ -26304,8 +26308,8 @@ public class CopyLODValues : MonoBehaviour, IEditorComponent
 	[SerializeField]
 	private LODGroup destination;
 
-	[SerializeField]
 	[Tooltip("Is false, exact values are copied. If true, values are scaled based on LODGroup size, so the changeover point will match.")]
+	[SerializeField]
 	private bool scale = true;
 
 	public bool CanCopy()
@@ -30055,8 +30059,8 @@ public class SceneToPrefab : MonoBehaviour, IEditorComponent
 	[Tooltip("If true the HLOD generation will be skipped and the previous results will be used, good to use if non-visual changes were made (eg.triggers)")]
 	public bool skipAllHlod;
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static bool monument_scenes_enabled;
 
 	private static Dictionary<string, string> autospawnToSceneSpawner;
@@ -31465,8 +31469,8 @@ public abstract class BaseSpawnPoint : MonoBehaviour, IServerComponent
 	public SpawnPointType spawnPointType;
 
 	[Tooltip("Min distance between the spawn area and any human players")]
-	[SerializeField]
 	[Range(1f, 25f)]
+	[SerializeField]
 	protected float playerCheckMargin = 2f;
 
 	public static Dictionary<SpawnPointType, List<BaseSpawnPoint>> spawnPoints = new Dictionary<SpawnPointType, List<BaseSpawnPoint>>();
@@ -31707,8 +31711,8 @@ public class IndividualSpawner : BaseMonoBehaviour, IServerComponent, ISpawnPoin
 
 	public LayerMask customBoundsCheckMask;
 
-	[SerializeField]
 	[Tooltip("Simply spawns the entity once. No respawning. Entity can be saved if desired.")]
+	[SerializeField]
 	public bool oneTimeSpawner;
 
 	internal bool isSpawnerActive = true;
@@ -33387,48 +33391,6 @@ public class SpawnHandler : SingletonComponent<SpawnHandler>
 			}
 		}
 		return stringBuilder.ToString();
-	}
-}
-
-
-using System.Collections.Generic;
-using Facepunch;
-using UnityEngine;
-
-public class StripRig : MonoBehaviour, IPrefabPreProcess
-{
-	public Transform root;
-
-	public bool fromClient;
-
-	public bool fromServer;
-
-	public void PreProcess(IPrefabProcessor preProcess, GameObject rootObj, string name, bool serverside, bool clientside, bool bundling)
-	{
-		if (Object.op_Implicit((Object)(object)root) && ((serverside && fromServer) || (clientside && fromClient)))
-		{
-			SkinnedMeshRenderer component = ((Component)this).GetComponent<SkinnedMeshRenderer>();
-			Strip(preProcess, component);
-		}
-		preProcess.RemoveComponent((Component)(object)this);
-	}
-
-	public void Strip(IPrefabProcessor preProcess, SkinnedMeshRenderer skinnedMeshRenderer)
-	{
-		List<Transform> list = Pool.Get<List<Transform>>();
-		((Component)root).GetComponentsInChildren<Transform>(list);
-		for (int num = list.Count - 1; num >= 0; num--)
-		{
-			if (preProcess != null)
-			{
-				preProcess.NominateForDeletion(((Component)list[num]).gameObject);
-			}
-			else
-			{
-				Object.DestroyImmediate((Object)(object)((Component)list[num]).gameObject);
-			}
-		}
-		Pool.FreeUnmanaged<Transform>(ref list);
 	}
 }
 

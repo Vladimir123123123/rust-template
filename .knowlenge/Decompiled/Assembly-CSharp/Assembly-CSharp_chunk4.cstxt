@@ -835,8 +835,8 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 
 	private const int DRIVING = 64;
 
-	[ServerVar]
 	[Help("How many milliseconds to budget for processing life story updates per frame")]
+	[ServerVar]
 	public static float lifeStoryFramebudgetms = 0.25f;
 
 	[NonSerialized]
@@ -4283,8 +4283,8 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
-	[RPC_Server.CallsPerSecond(3uL)]
 	[RPC_Server]
+	[RPC_Server.CallsPerSecond(3uL)]
 	private void ServerRequestEmojiData(RPCMessage msg)
 	{
 		//IL_0032: Unknown result type (might be due to invalid IL or missing references)
@@ -4598,9 +4598,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		currentGesture = null;
 	}
 
+	[RPC_Server.CallsPerSecond(10uL)]
 	[RPC_Server.FromOwner(false)]
 	[RPC_Server]
-	[RPC_Server.CallsPerSecond(10uL)]
 	public void Server_CancelGesture()
 	{
 		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
@@ -5221,9 +5221,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
+	[RPC_Server]
 	[RPC_Server.CallsPerSecond(1uL)]
 	[RPC_Server.FromOwner(false)]
-	[RPC_Server]
 	public void Server_UpdateMarker(RPCMessage msg)
 	{
 		if (State.pointsOfInterest == null)
@@ -5258,9 +5258,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
-	[RPC_Server.FromOwner(false)]
-	[RPC_Server]
 	[RPC_Server.CallsPerSecond(10uL)]
+	[RPC_Server]
+	[RPC_Server.FromOwner(false)]
 	public void Server_RemovePointOfInterest(RPCMessage msg)
 	{
 		int num = msg.read.Int32();
@@ -6117,9 +6117,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		Kill();
 	}
 
-	[RPC_Server.FromOwner(false)]
-	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server]
+	[RPC_Server.CallsPerSecond(5uL)]
+	[RPC_Server.FromOwner(false)]
 	private void RequestParachuteDeploy(RPCMessage msg)
 	{
 		RequestParachuteDeploy();
@@ -6303,9 +6303,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		note.icon = pingStyle.IconIndex;
 	}
 
-	[RPC_Server.CallsPerSecond(3uL)]
-	[RPC_Server.FromOwner(false)]
 	[RPC_Server]
+	[RPC_Server.FromOwner(false)]
+	[RPC_Server.CallsPerSecond(3uL)]
 	private void Server_AddPing(RPCMessage msg)
 	{
 		//IL_0034: Unknown result type (might be due to invalid IL or missing references)
@@ -6412,9 +6412,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
+	[RPC_Server]
 	[RPC_Server.FromOwner(false)]
 	[RPC_Server.CallsPerSecond(3uL)]
-	[RPC_Server]
 	private void Server_RemovePing(RPCMessage msg)
 	{
 		if (State.pings == null)
@@ -7358,8 +7358,8 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		return true;
 	}
 
-	[RPC_Server.FromOwner(false)]
 	[RPC_Server]
+	[RPC_Server.FromOwner(false)]
 	public void OnProjectileAttack(RPCMessage msg)
 	{
 		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
@@ -10330,8 +10330,8 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
-	[RPC_Server.FromOwner(false)]
 	[RPC_Server]
+	[RPC_Server.FromOwner(false)]
 	private void OnPlayerLanded(RPCMessage msg)
 	{
 		float num = msg.read.Float();
@@ -11605,9 +11605,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		return net.connection.info.GetString(key, defaultVal);
 	}
 
-	[RPC_Server]
 	[RPC_Server.CallsPerSecond(1uL)]
 	[RPC_Server.FromOwner(false)]
+	[RPC_Server]
 	public void PerformanceReport(RPCMessage msg)
 	{
 		string text = msg.read.String(256, false);
@@ -11808,9 +11808,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
-	[RPC_Server]
-	[RPC_Server.FromOwner(false)]
 	[RPC_Server.CallsPerSecond(1uL)]
+	[RPC_Server.FromOwner(false)]
+	[RPC_Server]
 	public async void OnPlayerReported(RPCMessage msg)
 	{
 		try
@@ -11862,9 +11862,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
+	[RPC_Server]
 	[RPC_Server.FromOwner(false)]
 	[RPC_Server.CallsPerSecond(1uL)]
-	[RPC_Server]
 	public async void OnFeedbackReport(RPCMessage msg)
 	{
 		try
@@ -12197,10 +12197,10 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		ClientRPCPlayer<OceanPaths>(null, this, "ReceiveCargoPatrolPath", cachedOceanPaths);
 	}
 
-	[RPC_Server.IsVisible(3f)]
 	[RPC_Server.CallsPerSecond(5uL)]
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	private void RPC_ReqDoRestrainedPush(RPCMessage rpc)
 	{
 		//IL_007d: Unknown result type (might be due to invalid IL or missing references)
@@ -12243,10 +12243,10 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		Hurt(Handcuffs.restrainedPushDamage, DamageType.Generic, player, useProtection: false);
 	}
 
-	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
 	[RPC_Server.CallsPerSecond(5uL)]
-	[RPC_Server.IsVisible(3f)]
+	[RPC_Server.MaxDistance(3f)]
 	private void RPC_ReqRemoveCuffs(RPCMessage rpc)
 	{
 		if (IsDead() || !IsRestrained)
@@ -12265,9 +12265,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 	}
 
 	[RPC_Server.CallsPerSecond(5uL)]
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	private void RPC_ReqRemoveHood(RPCMessage rpc)
 	{
 		BasePlayer player = rpc.player;
@@ -12292,10 +12292,10 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
-	[RPC_Server]
-	[RPC_Server.CallsPerSecond(5uL)]
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server.CallsPerSecond(5uL)]
+	[RPC_Server]
 	private void RPC_ReqEquipHood(RPCMessage rpc)
 	{
 		BasePlayer player = rpc.player;
@@ -12337,8 +12337,8 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		inventory.SetLockedByRestraint(flag: true);
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server.CallsPerSecond(5uL)]
+	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
 	private void RPC_ReqForceMountNearest(RPCMessage rpc)
@@ -12408,10 +12408,10 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		Pool.FreeUnmanaged<BaseMountable>(ref list);
 	}
 
+	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
 	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server.MaxDistance(3f)]
-	[RPC_Server.IsVisible(3f)]
 	private void RPC_ReqForceSwapSeat(RPCMessage rpc)
 	{
 		if (!isMounted || !IsRestrained || IsDead() || IsSleeping() || IsWounded() || (Object)(object)rpc.player == (Object)null)
@@ -13066,8 +13066,8 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 	}
 
 	[RPC_Server]
-	[RPC_Server.CallsPerSecond(10uL)]
 	[RPC_Server.FromOwner(false)]
+	[RPC_Server.CallsPerSecond(10uL)]
 	private void UpdateSpectatePositionFromDebugCamera(RPCMessage msg)
 	{
 		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
@@ -14482,9 +14482,9 @@ public class BasePlayer : BaseCombatEntity, LootPanel.IHasLootPanel, IIdealSlotE
 		}
 	}
 
+	[RPC_Server.FromOwner(false)]
 	[RPC_Server]
 	[RPC_Server.CallsPerSecond(1uL)]
-	[RPC_Server.FromOwner(false)]
 	private void PlayerRequestedTutorialStart(RPCMessage msg)
 	{
 		if (ConVar.Server.tutorialEnabled)
@@ -17008,8 +17008,8 @@ public class BasePortal : BaseCombatEntity
 		}
 	}
 
-	[RPC_Server.IsVisible(3f)]
 	[RPC_Server.CallsPerSecond(1uL)]
+	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
 	public void RPC_UsePortal(RPCMessage msg)
 	{
@@ -18484,9 +18484,9 @@ public class BaseProjectile : AttackEntity
 		return HasFlag(Flags.Reserved6) == defaultOn;
 	}
 
-	[RPC_Server]
 	[RPC_Server.CallsPerSecond(2uL)]
 	[RPC_Server.IsActiveItem]
+	[RPC_Server]
 	private void ToggleFireMode(RPCMessage msg)
 	{
 		if (canChangeFireModes && IsBurstEligable())
@@ -18571,8 +18571,8 @@ public class BaseProjectile : AttackEntity
 		UpdateAttachmentsState();
 	}
 
-	[RPC_Server.IsActiveItem]
 	[RPC_Server]
+	[RPC_Server.IsActiveItem]
 	private void StartReload(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -18659,8 +18659,8 @@ public class BaseProjectile : AttackEntity
 		}
 	}
 
-	[RPC_Server.IsActiveItem]
 	[RPC_Server]
+	[RPC_Server.IsActiveItem]
 	private void Reload(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -18711,8 +18711,8 @@ public class BaseProjectile : AttackEntity
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.FromOwner(false)]
+	[RPC_Server]
 	[RPC_Server.IsActiveItem]
 	private void CLProject(RPCMessage msg)
 	{
@@ -19235,8 +19235,8 @@ public class BaseSculpture : IOEntity, IServerFileReceiver, IUGCBrowserEntity, I
 	[SerializeField]
 	private Vector3 smoothColorMultiplier;
 
-	[Header("IO")]
 	[SerializeField]
+	[Header("IO")]
 	private ColorSetting[] colorSettings;
 
 	[SerializeField]
@@ -19899,8 +19899,8 @@ public class BaseSculpture : IOEntity, IServerFileReceiver, IUGCBrowserEntity, I
 		_grid.Dispose();
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
 	public void SV_SetColorIndex(RPCMessage msg)
 	{
 		int num = msg.read.Int32();
@@ -19962,8 +19962,8 @@ public class BaseSculpture : IOEntity, IServerFileReceiver, IUGCBrowserEntity, I
 		}
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
 	public void SV_Carve(RPCMessage msg)
 	{
 		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
@@ -20400,8 +20400,8 @@ public abstract class BaseSiegeWeapon : GroundVehicle, IEngineControllerUser, IE
 	[Header("Towing")]
 	public Transform towAnchor;
 
-	[SerializeField]
 	[Header("Pulling")]
+	[SerializeField]
 	private List<ModifierDefintion> pullingPlayerModifiers;
 
 	public const Flags Flag_IsPulled = Flags.Reserved12;
@@ -20909,8 +20909,8 @@ using VLB;
 
 public class BaseSubmarine : BaseVehicle, IEngineControllerUser, IEntity, IAirSupply, IPoolVehicle
 {
-	[SerializeField]
 	[Header("Submarine Main")]
+	[SerializeField]
 	private Transform centreOfMassTransform;
 
 	[SerializeField]
@@ -20962,8 +20962,8 @@ public class BaseSubmarine : BaseVehicle, IEngineControllerUser, IEntity, IAirSu
 	[SerializeField]
 	public float maxFuelPerSec = 0.15f;
 
-	[FormerlySerializedAs("internalAccessFuelTank")]
 	[SerializeField]
+	[FormerlySerializedAs("internalAccessFuelTank")]
 	private bool internalAccessStorage;
 
 	[Header("Submarine Weaponry")]
@@ -24124,8 +24124,8 @@ public class BaseVehicleModule : BaseVehicle, IPrefabPreProcess
 		public Renderer[] renderers;
 	}
 
-	[Header("Vehicle Module")]
 	[SerializeField]
+	[Header("Vehicle Module")]
 	private Transform centreOfMassTransform;
 
 	[SerializeField]
@@ -24143,12 +24143,12 @@ public class BaseVehicleModule : BaseVehicle, IPrefabPreProcess
 	[SerializeField]
 	private List<ConditionalObject> conditionals;
 
-	[Header("Trigger Parent")]
 	[SerializeField]
+	[Header("Trigger Parent")]
 	private TriggerParent[] triggerParents;
 
-	[SerializeField]
 	[Header("Sliding Components")]
+	[SerializeField]
 	private VehicleModuleSlidingComponent[] slidingComponents;
 
 	[SerializeField]
@@ -24692,8 +24692,8 @@ public class BaseVehicleModule : BaseVehicle, IPrefabPreProcess
 	{
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
 	public void RPC_Use(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -24797,8 +24797,8 @@ public class BatteringRam : BaseSiegeWeapon, IEngineControllerUser, IEntity, Veh
 		public GameObjectRef prefab;
 	}
 
-	[SerializeField]
 	[Header("Battering Ram")]
+	[SerializeField]
 	private Animator animator;
 
 	[SerializeField]
@@ -24846,8 +24846,8 @@ public class BatteringRam : BaseSiegeWeapon, IEngineControllerUser, IEntity, Veh
 	[SerializeField]
 	private Transform steeringWheel;
 
-	[HideInInspector]
 	[SerializeField]
+	[HideInInspector]
 	private Vector3 steerAngle;
 
 	public VehicleModuleEngine.Engine engine;
@@ -24857,8 +24857,8 @@ public class BatteringRam : BaseSiegeWeapon, IEngineControllerUser, IEntity, Veh
 	[Header("Cockpit")]
 	public Transform fuelGauge;
 
-	[SerializeField]
 	[HideInInspector]
+	[SerializeField]
 	private Vector3 fuelAngle;
 
 	private float cachedFuelFraction;
@@ -24866,8 +24866,8 @@ public class BatteringRam : BaseSiegeWeapon, IEngineControllerUser, IEntity, Veh
 	[ServerVar(ClientAdmin = true, Default = "2")]
 	public static int maxBuildingBlockGrade = 2;
 
-	[Header("Door")]
 	[SerializeField]
+	[Header("Door")]
 	private Transform doorTransform;
 
 	[SerializeField]
@@ -24890,8 +24890,8 @@ public class BatteringRam : BaseSiegeWeapon, IEngineControllerUser, IEntity, Veh
 
 	public GameObjectRef closeEndEffect;
 
-	[Header("Effects")]
 	[Tooltip("Effect played at local 0,0,0 in addition to the impact effects")]
+	[Header("Effects")]
 	public GameObjectRef hitEffect;
 
 	public VehicleLight[] vehicleLights;
@@ -25664,8 +25664,8 @@ public class BatteringRam : BaseSiegeWeapon, IEngineControllerUser, IEntity, Veh
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server]
 	public void SERVER_WantsAttack(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -26544,8 +26544,8 @@ public class Bike : GroundVehicle, VehicleChassisVisuals<Bike>.IClientWheelUser,
 
 	public static Phrase boostPhrase = new Phrase("boost", "Boost");
 
-	[Header("Bike")]
 	[SerializeField]
+	[Header("Bike")]
 	private Transform centreOfMassTransform;
 
 	[SerializeField]
@@ -26596,8 +26596,8 @@ public class Bike : GroundVehicle, VehicleChassisVisuals<Bike>.IClientWheelUser,
 	[SerializeField]
 	private float manyWheelStabD = 10f;
 
-	[SerializeField]
 	[Range(0f, 1f)]
+	[SerializeField]
 	public float airControlTorquePower = 0.04f;
 
 	public float sprintTime = 5f;
@@ -26637,8 +26637,8 @@ public class Bike : GroundVehicle, VehicleChassisVisuals<Bike>.IClientWheelUser,
 
 	public PoweredBy poweredBy;
 
-	[SerializeField]
 	[Range(0f, 1f)]
+	[SerializeField]
 	public float percentFood = 0.5f;
 
 	[SerializeField]
@@ -26701,8 +26701,8 @@ public class Bike : GroundVehicle, VehicleChassisVisuals<Bike>.IClientWheelUser,
 	[SerializeField]
 	private GameObject fxHeavyDamageInstLight;
 
-	[Header("Sidecar")]
 	[SerializeField]
+	[Header("Sidecar")]
 	private Rigidbody sidecarRigidBody;
 
 	[SerializeField]

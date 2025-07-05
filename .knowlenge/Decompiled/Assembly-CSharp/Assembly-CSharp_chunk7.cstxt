@@ -7066,8 +7066,8 @@ public class StorageContainer : DecayEntity, IItemContainerEntity, IIdealSlotEnt
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	private void RPC_OpenLoot(RPCMessage rpc)
 	{
 		if (isLootable)
@@ -8340,22 +8340,22 @@ public class Telephone : ContainerIOEntity, ICassettePlayer
 		Controller.ClearCurrentUser(msg);
 	}
 
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server]
 	public void SetCurrentUser(RPCMessage msg)
 	{
 		Controller.SetCurrentUser(msg);
 	}
 
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server]
 	public void InitiateCall(RPCMessage msg)
 	{
 		Controller.InitiateCall(msg);
 	}
 
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server]
 	public void AnswerPhone(RPCMessage msg)
 	{
 		Controller.AnswerPhone(msg);
@@ -8404,32 +8404,32 @@ public class Telephone : ContainerIOEntity, ICassettePlayer
 		Controller.UpdatePhoneName(msg);
 	}
 
-	[RPC_Server]
 	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server]
 	public void Server_RequestPhoneDirectory(RPCMessage msg)
 	{
 		Controller.Server_RequestPhoneDirectory(msg);
 	}
 
-	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.CallsPerSecond(5uL)]
 	public void Server_AddSavedNumber(RPCMessage msg)
 	{
 		Controller.Server_AddSavedNumber(msg);
 	}
 
-	[RPC_Server.CallsPerSecond(5uL)]
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server.CallsPerSecond(5uL)]
 	public void Server_RemoveSavedNumber(RPCMessage msg)
 	{
 		Controller.Server_RemoveSavedNumber(msg);
 	}
 
-	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server]
+	[RPC_Server.CallsPerSecond(5uL)]
 	public void ServerSendVoicemail(RPCMessage msg)
 	{
 		Controller.ServerSendVoicemail(msg);
@@ -8443,16 +8443,16 @@ public class Telephone : ContainerIOEntity, ICassettePlayer
 		Controller.ServerPlayVoicemail(msg);
 	}
 
+	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
-	[RPC_Server.CallsPerSecond(5uL)]
 	public void ServerStopVoicemail(RPCMessage msg)
 	{
 		Controller.ServerStopVoicemail(msg);
 	}
 
-	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
+	[RPC_Server.IsVisible(3f)]
 	[RPC_Server.CallsPerSecond(5uL)]
 	public void ServerDeleteVoicemail(RPCMessage msg)
 	{
@@ -10365,8 +10365,8 @@ public class TorchDeployableLightSource : StorageContainer, ISplashable, IIgnite
 		UpdateTorch();
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	private void RequestTurnOnOff(RPCMessage msg)
 	{
 		bool wantsOn = msg.read.Bit();
@@ -10630,8 +10630,8 @@ public class TorchWeapon : BaseMelee
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsActiveItem]
+	[RPC_Server]
 	private void Ignite(RPCMessage msg)
 	{
 		if (msg.player.CanInteract())
@@ -10640,8 +10640,8 @@ public class TorchWeapon : BaseMelee
 		}
 	}
 
-	[RPC_Server.IsActiveItem]
 	[RPC_Server]
+	[RPC_Server.IsActiveItem]
 	private void Extinguish(RPCMessage msg)
 	{
 		if (msg.player.CanInteract())
@@ -17916,8 +17916,8 @@ public class VehicleModuleCamper : VehicleModuleSeating
 		info.msg.camperModule.storageID = activeStorage.uid;
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
 	public void RPC_OpenLocker(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -17935,8 +17935,8 @@ public class VehicleModuleCamper : VehicleModuleSeating
 		}
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
 	public void RPC_OpenStorage(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -18397,8 +18397,8 @@ public class VehicleModuleSeating : BaseVehicleModule, IPrefabPreProcess
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server]
 	public void RPC_DestroyLock(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -18745,8 +18745,8 @@ public class VehicleModuleStorage : VehicleModuleSeating
 		}
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
 	public void RPC_Open(RPCMessage msg)
 	{
 		TryOpen(msg.player);
@@ -18933,8 +18933,8 @@ public class VehicleModuleTaxi : VehicleModuleStorage
 		return false;
 	}
 
-	[RPC_Server.MaxDistance(3f)]
 	[RPC_Server]
+	[RPC_Server.MaxDistance(3f)]
 	public void RPC_KickPassengers(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -19267,8 +19267,8 @@ public class VehiclePrivilege : SimplePrivilege
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.MaxDistance(3f)]
+	[RPC_Server]
 	private void RemoveSelfAuthorize(RPCMessage rpc)
 	{
 		RPCMessage rpc2 = rpc;
@@ -20457,8 +20457,8 @@ public class VendingMachine : ContainerIOEntity, IUGCBrowserEntity, IFoodSpoilMo
 		Decay.RadialDecayTouch(((Component)this).transform.position, 40f, 2097408);
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	public void TransactionStart(RPCMessage rpc)
 	{
 	}
@@ -20841,8 +20841,8 @@ public class VendingMachine : ContainerIOEntity, IUGCBrowserEntity, IFoodSpoilMo
 		return ((Component)this).transform.TransformPoint(localDropPosition);
 	}
 
-	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
+	[RPC_Server.IsVisible(3f)]
 	public void RPC_DeleteSellOrder(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -20862,8 +20862,8 @@ public class VendingMachine : ContainerIOEntity, IUGCBrowserEntity, IFoodSpoilMo
 		}
 	}
 
-	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
+	[RPC_Server.IsVisible(3f)]
 	public void RPC_RotateVM(RPCMessage msg)
 	{
 		//IL_0045: Unknown result type (might be due to invalid IL or missing references)
@@ -20881,8 +20881,8 @@ public class VendingMachine : ContainerIOEntity, IUGCBrowserEntity, IFoodSpoilMo
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	public void RPC_AddSellOrder(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -22602,10 +22602,10 @@ public class WallpaperPlanner : Planner
 		list.amount.Add((int)placementPrice.amount);
 	}
 
-	[RPC_Server.IsActiveItem]
+	[RPC_Server]
 	[RPC_Server.CallsPerSecond(3uL)]
 	[RPC_Server.FromOwner(false)]
-	[RPC_Server]
+	[RPC_Server.IsActiveItem]
 	private void SERVER_ChangeWallpaperToolSkin(RPCMessage msg)
 	{
 		int num = msg.read.Int32();
@@ -24690,9 +24690,9 @@ public class WeaponRack : StorageContainer
 		}
 	}
 
-	[RPC_Server]
-	[RPC_Server.MaxDistance(2f)]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server.MaxDistance(2f)]
+	[RPC_Server]
 	private void ReqMountBackSlot(RPCMessage msg)
 	{
 		if (base.inventory.itemList.Count != base.inventory.capacity)

@@ -22974,8 +22974,8 @@ public class AdvancedChristmasLights : IOEntity
 		return true;
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	public void SetAnimationStyle(RPCMessage msg)
 	{
 		int num = msg.read.Int32();
@@ -23237,9 +23237,9 @@ public class AdventCalendar : BaseCombatEntity
 		return false;
 	}
 
-	[RPC_Server]
 	[RPC_Server.CallsPerSecond(1uL)]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	public void RPC_RequestGift(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -23413,9 +23413,9 @@ public abstract class AppIOEntity : IOEntity
 		return new EntityTarget(net.ID);
 	}
 
-	[RPC_Server.IsVisible(3f)]
 	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server]
+	[RPC_Server.IsVisible(3f)]
 	public async void PairWithApp(RPCMessage msg)
 	{
 		try
@@ -24302,8 +24302,8 @@ public class AttackHelicopter : PlayerHelicopter
 		}
 	}
 
-	[RPC_Server.IsVisible(3f)]
 	[RPC_Server]
+	[RPC_Server.IsVisible(3f)]
 	public void RPC_CloseGunnerView(RPCMessage msg)
 	{
 		BasePlayer player = msg.player;
@@ -24313,8 +24313,8 @@ public class AttackHelicopter : PlayerHelicopter
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	public void RPC_SetRocketAmmoType(RPCMessage msg)
 	{
 		if (!((Object)(object)GetDriver() != (Object)(object)msg.player))
@@ -24324,8 +24324,8 @@ public class AttackHelicopter : PlayerHelicopter
 		}
 	}
 
-	[RPC_Server]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server]
 	public void RPC_TriggerRocketReload(RPCMessage msg)
 	{
 		if (!((Object)(object)GetDriver() != (Object)(object)msg.player))
@@ -25440,8 +25440,8 @@ public class AudioVisualisationEntity : IOEntity
 		info.msg.audioEntity.gradient = currentGradient;
 	}
 
-	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server.IsVisible(3f)]
+	[RPC_Server.CallsPerSecond(5uL)]
 	[RPC_Server]
 	public void ServerUpdateSettings(RPCMessage msg)
 	{

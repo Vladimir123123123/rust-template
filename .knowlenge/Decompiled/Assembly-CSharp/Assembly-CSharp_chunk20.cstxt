@@ -1045,8 +1045,8 @@ public class UIRing : UIPrimitiveBase
 
 	public float outerRadius = 32f;
 
-	[Tooltip("The Arc Steps property defines the number of segments that the Arc will be divided into.")]
 	[Range(0f, 1000f)]
+	[Tooltip("The Arc Steps property defines the number of segments that the Arc will be divided into.")]
 	public int ArcSteps = 100;
 
 	private List<int> indices = new List<int>();
@@ -1869,11 +1869,11 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.Scripting;
 
-[AddComponentMenu("Rendering/Post-process Layer", 1000)]
-[ImageEffectAllowedInSceneView]
-[RequireComponent(typeof(Camera))]
 [ExecuteAlways]
 [DisallowMultipleComponent]
+[ImageEffectAllowedInSceneView]
+[AddComponentMenu("Rendering/Post-process Layer", 1000)]
+[RequireComponent(typeof(Camera))]
 public class PostProcessLayer : MonoBehaviour
 {
 	private enum ScalingMode
@@ -1934,8 +1934,8 @@ public class PostProcessLayer : MonoBehaviour
 	[SerializeField]
 	private bool m_ShowToolkit;
 
-	[Preserve]
 	[SerializeField]
+	[Preserve]
 	private bool m_ShowCustomSorter;
 
 	public bool breakBeforeColorGrading;
@@ -3547,8 +3547,8 @@ public sealed class AmbientOcclusion : PostProcessEffectSettings
 		value = 0f
 	};
 
-	[Tooltip("The custom color to use for the ambient occlusion. The default is black.")]
 	[ColorUsage(false)]
+	[Tooltip("The custom color to use for the ambient occlusion. The default is black.")]
 	public ColorParameter color = new ColorParameter
 	{
 		value = Color.black
@@ -3578,15 +3578,15 @@ public sealed class AmbientOcclusion : PostProcessEffectSettings
 		value = -12f
 	};
 
-	[Tooltip("This modifies the thickness of occluders. It increases the size of dark areas and also introduces a dark halo around objects.")]
 	[Range(1f, 10f)]
+	[Tooltip("This modifies the thickness of occluders. It increases the size of dark areas and also introduces a dark halo around objects.")]
 	public FloatParameter thicknessModifier = new FloatParameter
 	{
 		value = 1f
 	};
 
-	[Tooltip("Modifies the influence of direct lighting on ambient occlusion.")]
 	[Range(0f, 1f)]
+	[Tooltip("Modifies the influence of direct lighting on ambient occlusion.")]
 	public FloatParameter directLightingStrength = new FloatParameter
 	{
 		value = 0f
@@ -3746,25 +3746,25 @@ public sealed class AutoExposure : PostProcessEffectSettings
 		value = new Vector2(50f, 95f)
 	};
 
-	[Tooltip("Minimum average luminance to consider for auto exposure. Unit is EV.")]
 	[Range(-9f, 9f)]
+	[Tooltip("Minimum average luminance to consider for auto exposure. Unit is EV.")]
 	[DisplayName("Minimum (EV)")]
 	public FloatParameter minLuminance = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[Range(-9f, 9f)]
 	[Tooltip("Maximum average luminance to consider for auto exposure. Unit is EV.")]
+	[Range(-9f, 9f)]
 	[DisplayName("Maximum (EV)")]
 	public FloatParameter maxLuminance = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[Min(0f)]
-	[DisplayName("Exposure Compensation")]
 	[Tooltip("Use this to scale the global exposure of the scene.")]
+	[DisplayName("Exposure Compensation")]
+	[Min(0f)]
 	public FloatParameter keyValue = new FloatParameter
 	{
 		value = 1f
@@ -3784,8 +3784,8 @@ public sealed class AutoExposure : PostProcessEffectSettings
 		value = 2f
 	};
 
-	[Tooltip("Adaptation speed from a light to a dark environment.")]
 	[Min(0f)]
+	[Tooltip("Adaptation speed from a light to a dark environment.")]
 	public FloatParameter speedDown = new FloatParameter
 	{
 		value = 1f
@@ -3929,8 +3929,8 @@ public sealed class Bloom : PostProcessEffectSettings
 		value = 0f
 	};
 
-	[Min(0f)]
 	[Tooltip("Filters out pixels under this level of brightness. Value is in gamma-space.")]
+	[Min(0f)]
 	public FloatParameter threshold = new FloatParameter
 	{
 		value = 1f
@@ -3977,16 +3977,16 @@ public sealed class Bloom : PostProcessEffectSettings
 		value = false
 	};
 
-	[Tooltip("The lens dirt texture used to add smudges or dust to the bloom effect.")]
 	[DisplayName("Texture")]
+	[Tooltip("The lens dirt texture used to add smudges or dust to the bloom effect.")]
 	public TextureParameter dirtTexture = new TextureParameter
 	{
 		value = null
 	};
 
-	[Min(0f)]
 	[Tooltip("The intensity of the lens dirtiness.")]
 	[DisplayName("Intensity")]
+	[Min(0f)]
 	public FloatParameter dirtIntensity = new FloatParameter
 	{
 		value = 0f
@@ -4222,15 +4222,15 @@ public sealed class ChromaticAberration : PostProcessEffectSettings
 		value = null
 	};
 
-	[Range(0f, 1f)]
 	[Tooltip("Amount of tangential distortion.")]
+	[Range(0f, 1f)]
 	public FloatParameter intensity = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[Tooltip("Boost performances by lowering the effect quality. This settings is meant to be used on mobile and other low-end platforms but can also provide a nice performance boost on desktops and consoles.")]
 	[FormerlySerializedAs("mobileOptimized")]
+	[Tooltip("Boost performances by lowering the effect quality. This settings is meant to be used on mobile and other low-end platforms but can also provide a nice performance boost on desktops and consoles.")]
 	public BoolParameter fastMode = new BoolParameter
 	{
 		value = false
@@ -4371,69 +4371,69 @@ using UnityEngine.Rendering.PostProcessing;
 [PostProcess(typeof(ColorGradingRenderer), "Unity/Color Grading", true)]
 public sealed class ColorGrading : PostProcessEffectSettings
 {
-	[Tooltip("Select a color grading mode that fits your dynamic range and workflow. Use HDR if your camera is set to render in HDR and your target platform supports it. Use LDR for low-end mobiles or devices that don't support HDR. Use External if you prefer authoring a Log LUT in an external software.")]
 	[DisplayName("Mode")]
+	[Tooltip("Select a color grading mode that fits your dynamic range and workflow. Use HDR if your camera is set to render in HDR and your target platform supports it. Use LDR for low-end mobiles or devices that don't support HDR. Use External if you prefer authoring a Log LUT in an external software.")]
 	public GradingModeParameter gradingMode = new GradingModeParameter
 	{
 		value = GradingMode.HighDefinitionRange
 	};
 
-	[DisplayName("Lookup Texture")]
 	[Tooltip("A custom 3D log-encoded texture.")]
+	[DisplayName("Lookup Texture")]
 	public TextureParameter externalLut = new TextureParameter
 	{
 		value = null
 	};
 
-	[DisplayName("Mode")]
 	[Tooltip("Select a tonemapping algorithm to use at the end of the color grading process.")]
+	[DisplayName("Mode")]
 	public TonemapperParameter tonemapper = new TonemapperParameter
 	{
 		value = Tonemapper.None
 	};
 
-	[DisplayName("Toe Strength")]
 	[Range(0f, 1f)]
 	[Tooltip("Affects the transition between the toe and the mid section of the curve. A value of 0 means no toe, a value of 1 means a very hard transition.")]
+	[DisplayName("Toe Strength")]
 	public FloatParameter toneCurveToeStrength = new FloatParameter
 	{
 		value = 0f
 	};
 
+	[Tooltip("Affects how much of the dynamic range is in the toe. With a small value, the toe will be very short and quickly transition into the linear section, with a larger value, the toe will be longer.")]
 	[DisplayName("Toe Length")]
 	[Range(0f, 1f)]
-	[Tooltip("Affects how much of the dynamic range is in the toe. With a small value, the toe will be very short and quickly transition into the linear section, with a larger value, the toe will be longer.")]
 	public FloatParameter toneCurveToeLength = new FloatParameter
 	{
 		value = 0.5f
 	};
 
-	[Range(0f, 1f)]
-	[Tooltip("Affects the transition between the mid section and the shoulder of the curve. A value of 0 means no shoulder, a value of 1 means a very hard transition.")]
 	[DisplayName("Shoulder Strength")]
+	[Tooltip("Affects the transition between the mid section and the shoulder of the curve. A value of 0 means no shoulder, a value of 1 means a very hard transition.")]
+	[Range(0f, 1f)]
 	public FloatParameter toneCurveShoulderStrength = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[Min(0f)]
-	[DisplayName("Shoulder Length")]
 	[Tooltip("Affects how many F-stops (EV) to add to the dynamic range of the curve.")]
+	[DisplayName("Shoulder Length")]
+	[Min(0f)]
 	public FloatParameter toneCurveShoulderLength = new FloatParameter
 	{
 		value = 0.5f
 	};
 
 	[Tooltip("Affects how much overshoot to add to the shoulder.")]
-	[Range(0f, 1f)]
 	[DisplayName("Shoulder Angle")]
+	[Range(0f, 1f)]
 	public FloatParameter toneCurveShoulderAngle = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[Min(0.001f)]
 	[Tooltip("Applies a gamma function to the curve.")]
+	[Min(0.001f)]
 	[DisplayName("Gamma")]
 	public FloatParameter toneCurveGamma = new FloatParameter
 	{
@@ -4448,9 +4448,9 @@ public sealed class ColorGrading : PostProcessEffectSettings
 		defaultState = TextureParameterDefault.Lut2D
 	};
 
+	[Tooltip("How much of the lookup texture will contribute to the color grading effect.")]
 	[DisplayName("Contribution")]
 	[Range(0f, 1f)]
-	[Tooltip("How much of the lookup texture will contribute to the color grading effect.")]
 	public FloatParameter ldrLutContribution = new FloatParameter
 	{
 		value = 1f
@@ -4464,56 +4464,56 @@ public sealed class ColorGrading : PostProcessEffectSettings
 		value = 0f
 	};
 
-	[Tooltip("Sets the white balance to compensate for a green or magenta tint.")]
 	[DisplayName("Tint")]
 	[Range(-100f, 100f)]
+	[Tooltip("Sets the white balance to compensate for a green or magenta tint.")]
 	public FloatParameter tint = new FloatParameter
 	{
 		value = 0f
 	};
 
 	[DisplayName("Color Filter")]
-	[ColorUsage(false, true)]
 	[Tooltip("Tint the render by multiplying a color.")]
+	[ColorUsage(false, true)]
 	public ColorParameter colorFilter = new ColorParameter
 	{
 		value = Color.white
 	};
 
-	[DisplayName("Hue Shift")]
-	[Range(-180f, 180f)]
 	[Tooltip("Shift the hue of all colors.")]
+	[Range(-180f, 180f)]
+	[DisplayName("Hue Shift")]
 	public FloatParameter hueShift = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[DisplayName("Saturation")]
-	[Range(-100f, 100f)]
 	[Tooltip("Pushes the intensity of all colors.")]
+	[Range(-100f, 100f)]
+	[DisplayName("Saturation")]
 	public FloatParameter saturation = new FloatParameter
 	{
 		value = 0f
 	};
 
 	[DisplayName("Brightness")]
-	[Range(-100f, 100f)]
 	[Tooltip("Makes the image brighter or darker.")]
+	[Range(-100f, 100f)]
 	public FloatParameter brightness = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[DisplayName("Post-exposure (EV)")]
 	[Tooltip("Adjusts the overall exposure of the scene in EV units. This is applied after the HDR effect and right before tonemapping so it won't affect previous effects in the chain.")]
+	[DisplayName("Post-exposure (EV)")]
 	public FloatParameter postExposure = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[DisplayName("Contrast")]
 	[Range(-100f, 100f)]
 	[Tooltip("Expands or shrinks the overall range of tonal values.")]
+	[DisplayName("Contrast")]
 	public FloatParameter contrast = new FloatParameter
 	{
 		value = 0f
@@ -4542,33 +4542,33 @@ public sealed class ColorGrading : PostProcessEffectSettings
 		value = 100f
 	};
 
+	[DisplayName("Green")]
 	[Tooltip("Modify influence of the green channel in the overall mix.")]
 	[Range(-200f, 200f)]
-	[DisplayName("Green")]
 	public FloatParameter mixerRedOutGreenIn = new FloatParameter
 	{
 		value = 0f
 	};
 
 	[DisplayName("Blue")]
-	[Range(-200f, 200f)]
 	[Tooltip("Modify influence of the blue channel in the overall mix.")]
+	[Range(-200f, 200f)]
 	public FloatParameter mixerRedOutBlueIn = new FloatParameter
 	{
 		value = 0f
 	};
 
+	[Tooltip("Modify influence of the red channel in the overall mix.")]
 	[DisplayName("Red")]
 	[Range(-200f, 200f)]
-	[Tooltip("Modify influence of the red channel in the overall mix.")]
 	public FloatParameter mixerGreenOutRedIn = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[DisplayName("Green")]
-	[Range(-200f, 200f)]
 	[Tooltip("Modify influence of the green channel in the overall mix.")]
+	[Range(-200f, 200f)]
+	[DisplayName("Green")]
 	public FloatParameter mixerGreenOutGreenIn = new FloatParameter
 	{
 		value = 100f
@@ -4582,41 +4582,41 @@ public sealed class ColorGrading : PostProcessEffectSettings
 		value = 0f
 	};
 
+	[Tooltip("Modify influence of the red channel in the overall mix.")]
 	[DisplayName("Red")]
 	[Range(-200f, 200f)]
-	[Tooltip("Modify influence of the red channel in the overall mix.")]
 	public FloatParameter mixerBlueOutRedIn = new FloatParameter
 	{
 		value = 0f
 	};
 
-	[Range(-200f, 200f)]
-	[DisplayName("Green")]
 	[Tooltip("Modify influence of the green channel in the overall mix.")]
+	[DisplayName("Green")]
+	[Range(-200f, 200f)]
 	public FloatParameter mixerBlueOutGreenIn = new FloatParameter
 	{
 		value = 0f
 	};
 
 	[DisplayName("Blue")]
-	[Range(-200f, 200f)]
 	[Tooltip("Modify influence of the blue channel in the overall mix.")]
+	[Range(-200f, 200f)]
 	public FloatParameter mixerBlueOutBlueIn = new FloatParameter
 	{
 		value = 100f
 	};
 
-	[Trackball(TrackballAttribute.Mode.Lift)]
-	[Tooltip("Controls the darkest portions of the render.")]
 	[DisplayName("Lift")]
+	[Tooltip("Controls the darkest portions of the render.")]
+	[Trackball(TrackballAttribute.Mode.Lift)]
 	public Vector4Parameter lift = new Vector4Parameter
 	{
 		value = new Vector4(1f, 1f, 1f, 0f)
 	};
 
-	[Trackball(TrackballAttribute.Mode.Gamma)]
-	[Tooltip("Power function that controls mid-range tones.")]
 	[DisplayName("Gamma")]
+	[Tooltip("Power function that controls mid-range tones.")]
+	[Trackball(TrackballAttribute.Mode.Gamma)]
 	public Vector4Parameter gamma = new Vector4Parameter
 	{
 		value = new Vector4(1f, 1f, 1f, 0f)
@@ -5586,8 +5586,8 @@ using UnityEngine.Serialization;
 [Preserve]
 public sealed class FastApproximateAntialiasing
 {
-	[Tooltip("Boost performances by lowering the effect quality. This setting is meant to be used on mobile and other low-end platforms but can also provide a nice performance boost on desktops and consoles.")]
 	[FormerlySerializedAs("mobileOptimized")]
+	[Tooltip("Boost performances by lowering the effect quality. This setting is meant to be used on mobile and other low-end platforms but can also provide a nice performance boost on desktops and consoles.")]
 	public bool fastMode;
 
 	[Tooltip("Keep alpha channel. This will slightly lower the effect quality but allows rendering against a transparent background.")]
@@ -5687,8 +5687,8 @@ public sealed class Grain : PostProcessEffectSettings
 		value = 1f
 	};
 
-	[DisplayName("Luminance Contribution")]
 	[Range(0f, 1f)]
+	[DisplayName("Luminance Contribution")]
 	[Tooltip("Controls the noise response curve based on scene luminance. Lower values mean less noise in dark areas.")]
 	public FloatParameter lumContrib = new FloatParameter
 	{
@@ -5802,25 +5802,25 @@ public sealed class LensDistortion : PostProcessEffectSettings
 		value = 0f
 	};
 
-	[Range(0f, 1f)]
-	[DisplayName("X Multiplier")]
 	[Tooltip("Intensity multiplier on the x-axis. Set it to 0 to disable distortion on this axis.")]
+	[DisplayName("X Multiplier")]
+	[Range(0f, 1f)]
 	public FloatParameter intensityX = new FloatParameter
 	{
 		value = 1f
 	};
 
-	[DisplayName("Y Multiplier")]
 	[Range(0f, 1f)]
 	[Tooltip("Intensity multiplier on the y-axis. Set it to 0 to disable distortion on this axis.")]
+	[DisplayName("Y Multiplier")]
 	public FloatParameter intensityY = new FloatParameter
 	{
 		value = 1f
 	};
 
-	[Space]
 	[Range(-1f, 1f)]
 	[Tooltip("Distortion center point (x-axis).")]
+	[Space]
 	public FloatParameter centerX = new FloatParameter
 	{
 		value = 0f
@@ -5833,9 +5833,9 @@ public sealed class LensDistortion : PostProcessEffectSettings
 		value = 0f
 	};
 
-	[Space]
 	[Tooltip("Global screen scaling.")]
 	[Range(0.01f, 5f)]
+	[Space]
 	public FloatParameter scale = new FloatParameter
 	{
 		value = 1f
@@ -5894,8 +5894,8 @@ public sealed class MotionBlur : PostProcessEffectSettings
 		value = 270f
 	};
 
-	[Range(4f, 32f)]
 	[Tooltip("The amount of sample points. This affects quality and performance.")]
+	[Range(4f, 32f)]
 	public IntParameter sampleCount = new IntParameter
 	{
 		value = 10
@@ -7257,12 +7257,12 @@ public sealed class TemporalAntialiasing
 	[Tooltip("The diameter (in texels) inside which jitter samples are spread. Smaller values result in crisper but more aliased output, while larger values result in more stable, but blurrier, output.")]
 	public float jitterSpread = 0.75f;
 
-	[Range(0f, 3f)]
 	[Tooltip("Controls the amount of sharpening applied to the color buffer. High values may introduce dark-border artifacts.")]
+	[Range(0f, 3f)]
 	public float sharpness = 0.25f;
 
-	[Range(0f, 0.99f)]
 	[Tooltip("The blend coefficient for a stationary fragment. Controls the percentage of history sample blended into the final color.")]
+	[Range(0f, 0.99f)]
 	public float stationaryBlending = 0.95f;
 
 	[Tooltip("The blend coefficient for a fragment with significant motion. Controls the percentage of history sample blended into the final color.")]
@@ -7546,15 +7546,15 @@ public sealed class Vignette : PostProcessEffectSettings
 		value = 0f
 	};
 
-	[Tooltip("Smoothness of the vignette borders.")]
 	[Range(0.01f, 1f)]
+	[Tooltip("Smoothness of the vignette borders.")]
 	public FloatParameter smoothness = new FloatParameter
 	{
 		value = 0.2f
 	};
 
-	[Range(0f, 1f)]
 	[Tooltip("Lower values will make a square-ish vignette.")]
+	[Range(0f, 1f)]
 	public FloatParameter roundness = new FloatParameter
 	{
 		value = 1f
@@ -7572,8 +7572,8 @@ public sealed class Vignette : PostProcessEffectSettings
 		value = null
 	};
 
-	[Tooltip("Mask opacity.")]
 	[Range(0f, 1f)]
+	[Tooltip("Mask opacity.")]
 	public FloatParameter opacity = new FloatParameter
 	{
 		value = 1f
@@ -8528,8 +8528,8 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.PostProcessing;
 
-[AddComponentMenu("Rendering/Post-process Debug", 1002)]
 [ExecuteAlways]
+[AddComponentMenu("Rendering/Post-process Debug", 1002)]
 public sealed class PostProcessDebug : MonoBehaviour
 {
 	public PostProcessLayer postProcessLayer;
@@ -9798,12 +9798,12 @@ public sealed class PostProcessVolume : MonoBehaviour
 
 	public Bounds bounds;
 
-	[Tooltip("The distance (from the attached Collider) to start blending from. A value of 0 means there will be no blending and the Volume overrides will be applied immediatly upon entry to the attached Collider.")]
 	[Min(0f)]
+	[Tooltip("The distance (from the attached Collider) to start blending from. A value of 0 means there will be no blending and the Volume overrides will be applied immediatly upon entry to the attached Collider.")]
 	public float blendDistance;
 
-	[Range(0f, 1f)]
 	[Tooltip("The total weight of this Volume in the Scene. A value of 0 signifies that it will have no effect, 1 signifies full effect.")]
+	[Range(0f, 1f)]
 	public float weight = 1f;
 
 	[Tooltip("The volume priority in the stack. A higher value means higher priority. Negative values are supported.")]
@@ -23735,8 +23735,8 @@ public static class Analytics
 		}
 	}
 
-	[ClientVar(Name = "pending_analytics", Help = "Shows how many analytics events are pending upload")]
 	[ServerVar(Name = "pending_analytics", Help = "Shows how many analytics events are pending upload")]
+	[ClientVar(Name = "pending_analytics", Help = "Shows how many analytics events are pending upload")]
 	public static void GetPendingAnalytics(Arg arg)
 	{
 		StringBuilder stringBuilder = new StringBuilder();

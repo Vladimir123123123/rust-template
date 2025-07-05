@@ -1,3 +1,45 @@
+using System.Collections.Generic;
+using Facepunch;
+using UnityEngine;
+
+public class StripRig : MonoBehaviour, IPrefabPreProcess
+{
+	public Transform root;
+
+	public bool fromClient;
+
+	public bool fromServer;
+
+	public void PreProcess(IPrefabProcessor preProcess, GameObject rootObj, string name, bool serverside, bool clientside, bool bundling)
+	{
+		if (Object.op_Implicit((Object)(object)root) && ((serverside && fromServer) || (clientside && fromClient)))
+		{
+			SkinnedMeshRenderer component = ((Component)this).GetComponent<SkinnedMeshRenderer>();
+			Strip(preProcess, component);
+		}
+		preProcess.RemoveComponent((Component)(object)this);
+	}
+
+	public void Strip(IPrefabProcessor preProcess, SkinnedMeshRenderer skinnedMeshRenderer)
+	{
+		List<Transform> list = Pool.Get<List<Transform>>();
+		((Component)root).GetComponentsInChildren<Transform>(list);
+		for (int num = list.Count - 1; num >= 0; num--)
+		{
+			if (preProcess != null)
+			{
+				preProcess.NominateForDeletion(((Component)list[num]).gameObject);
+			}
+			else
+			{
+				Object.DestroyImmediate((Object)(object)((Component)list[num]).gameObject);
+			}
+		}
+		Pool.FreeUnmanaged<Transform>(ref list);
+	}
+}
+
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -2126,8 +2168,8 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class TriggerParent : TriggerBase, IServerComponent
 {
-	[Tooltip("Deparent if the parented entity clips into an obstacle")]
 	[SerializeField]
+	[Tooltip("Deparent if the parented entity clips into an obstacle")]
 	[Header("General")]
 	public bool doClippingCheck;
 
@@ -3653,8 +3695,8 @@ using UnityEngine;
 
 public class TubeRenderer : FacepunchBehaviour
 {
-	[Range(3f, 64f)]
 	[Header("Settings")]
+	[Range(3f, 64f)]
 	public int Segments = 12;
 
 	public float Radius = 0.1f;
@@ -7674,9 +7716,9 @@ public class MaterialOverlay : MonoBehaviour
 
 using UnityEngine;
 
+[AddComponentMenu("Image Effects/Natural Bloom and Dirty Lens")]
 [RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
-[AddComponentMenu("Image Effects/Natural Bloom and Dirty Lens")]
 public class NaturalBloomAndDirtyLens : MonoBehaviour
 {
 	public Shader shader;
@@ -12283,8 +12325,8 @@ public class ItemBlueprint : MonoBehaviour
 
 	public int scrapFromRecycle;
 
-	[Tooltip("This item won't show anywhere unless you have the corresponding SteamItem in your inventory - which is defined on the ItemDefinition")]
 	[Header("Unlocking")]
+	[Tooltip("This item won't show anywhere unless you have the corresponding SteamItem in your inventory - which is defined on the ItemDefinition")]
 	public bool NeedsSteamItem;
 
 	public ItemDefinition RequireUnlockedItem;
@@ -12520,8 +12562,8 @@ public class ItemDefinition : MonoBehaviour
 	[Tooltip("If true, this item will support item ownership even if it's stacksize is >1")]
 	public bool supportsStackableOwnership;
 
-	[Header("Spawn Tables")]
 	[Tooltip("How rare this item is and how much it costs to research")]
+	[Header("Spawn Tables")]
 	public Rarity rarity;
 
 	public Rarity despawnRarity;

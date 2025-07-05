@@ -1280,8 +1280,8 @@ public class LimitedTurnNavAgent : EntityComponent<BaseEntity>
 	[SerializeField]
 	private NavMeshAgent agent;
 
-	[Header("Speed")]
 	[SerializeField]
+	[Header("Speed")]
 	private float sneakSpeed = 0.6f;
 
 	[SerializeField]

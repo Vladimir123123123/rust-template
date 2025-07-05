@@ -12100,6 +12100,22 @@ public class Socket_Free_Snappable : Socket_Free
 		}
 	}
 
+	private struct BuildingBlockPadding
+	{
+		public enum PaddingType
+		{
+			WeaksideOnly,
+			StrongsideOnly,
+			Both
+		}
+
+		public float YPadding;
+
+		public float NormalPadding;
+
+		public PaddingType PaddingMode;
+	}
+
 	[ClientVar(Saved = true, Help = "The current snapping mode for deployables.")]
 	public static int SnappingMode = 2;
 
@@ -12133,6 +12149,28 @@ public class Socket_Free_Snappable : Socket_Free
 	private Construction staticConstruction;
 
 	private static List<SnapResult> results = new List<SnapResult>();
+
+	private static readonly Dictionary<string, BuildingBlockPadding> _buildingBlockPaddingDatabase = new Dictionary<string, BuildingBlockPadding>
+	{
+		{
+			"assets/prefabs/building core/foundation/foundation.container.prefab",
+			new BuildingBlockPadding
+			{
+				YPadding = 0.02f,
+				NormalPadding = 0f,
+				PaddingMode = BuildingBlockPadding.PaddingType.Both
+			}
+		},
+		{
+			"assets/prefabs/building core/wall/wall.wood.full.prefab",
+			new BuildingBlockPadding
+			{
+				YPadding = 0f,
+				NormalPadding = 0.1f,
+				PaddingMode = BuildingBlockPadding.PaddingType.StrongsideOnly
+			}
+		}
+	};
 
 	private void AddDirections(Construction.Target target, PooledList<Vector3> directions, bool rayAligned)
 	{
@@ -12199,19 +12237,25 @@ public class Socket_Free_Snappable : Socket_Free
 		//IL_00c4: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ce: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00d3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0115: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0137: Unknown result type (might be due to invalid IL or missing references)
-		//IL_013e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0143: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00ef: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00f6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
+		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0149: Unknown result type (might be due to invalid IL or missing references)
-		//IL_014e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0150: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0155: Unknown result type (might be due to invalid IL or missing references)
-		//IL_025b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0267: Unknown result type (might be due to invalid IL or missing references)
+		//IL_014f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0154: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0156: Unknown result type (might be due to invalid IL or missing references)
+		//IL_015b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_017c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0190: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0195: Unknown result type (might be due to invalid IL or missing references)
+		//IL_019c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a1: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a6: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02ac: Unknown result type (might be due to invalid IL or missing references)
+		//IL_02b8: Unknown result type (might be due to invalid IL or missing references)
 		if (SnappingMode == 0)
 		{
 			return base.DoPlacement(target);
@@ -12243,6 +12287,9 @@ public class Socket_Free_Snappable : Socket_Free
 							float num = ((Bounds)(ref staticEntity.bounds)).extents.y - ((Bounds)(ref staticEntity.bounds)).center.y;
 							Vector3 val4 = Vector3.up * num;
 							target.position = ((RaycastHit)(ref current)).point + val4;
+							float buildingBlockPadding = GetBuildingBlockPadding(((Object)((RaycastHit)(ref current)).collider).name, yPadding: true, ((Component)((RaycastHit)(ref current)).collider).transform, ((RaycastHit)(ref current)).normal);
+							ref Vector3 reference = ref target.position;
+							reference += Vector3.up * buildingBlockPadding;
 						}
 					}
 					results.Clear();
@@ -12300,6 +12347,48 @@ public class Socket_Free_Snappable : Socket_Free
 	private float GetMaxDistance()
 	{
 		return 2.5f;
+	}
+
+	private float GetBuildingBlockPadding(string name, bool yPadding, Transform buildingBlockTransform, Vector3 rayNormal)
+	{
+		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
+		if (_buildingBlockPaddingDatabase.TryGetValue(name, out var value))
+		{
+			if (yPadding)
+			{
+				return value.YPadding;
+			}
+			if (ShouldAddPadding(buildingBlockTransform, rayNormal, value.PaddingMode))
+			{
+				return value.NormalPadding;
+			}
+		}
+		return 0f;
+	}
+
+	private bool ShouldAddPadding(Transform buildingBlockTransform, Vector3 rayNormal, BuildingBlockPadding.PaddingType type)
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
+		if (type == BuildingBlockPadding.PaddingType.Both)
+		{
+			return true;
+		}
+		Matrix4x4 worldToLocalMatrix = buildingBlockTransform.worldToLocalMatrix;
+		Vector3 val = ((Matrix4x4)(ref worldToLocalMatrix)).MultiplyVector(-rayNormal);
+		float num = Vector3Ex.DotDegrees(worldForward, val);
+		return type switch
+		{
+			BuildingBlockPadding.PaddingType.WeaksideOnly => num > 90f, 
+			BuildingBlockPadding.PaddingType.StrongsideOnly => num < 90f, 
+			_ => false, 
+		};
 	}
 
 	private SnapResult TryWallSnap(Construction.Target target)
@@ -12532,8 +12621,14 @@ public class Socket_Free_Snappable : Socket_Free
 		//IL_00c5: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00ca: Unknown result type (might be due to invalid IL or missing references)
 		//IL_00cf: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
+		//IL_011c: Unknown result type (might be due to invalid IL or missing references)
+		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
+		//IL_00fc: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0108: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010a: Unknown result type (might be due to invalid IL or missing references)
+		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0112: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0117: Unknown result type (might be due to invalid IL or missing references)
 		Vector3 normal = ((RaycastHit)(ref bestHit)).normal;
 		normal.y = 0f;
 		Matrix4x4 val = Matrix4x4.TRS(target.position, targetRotation, ((Component)staticEntity).transform.lossyScale);
@@ -12545,6 +12640,11 @@ public class Socket_Free_Snappable : Socket_Free
 		float num = Vector3.Dot(val4, normal);
 		Vector3 val5 = ((RaycastHit)(ref bestHit)).point + normal * snappingPadding + val3 - normal * num;
 		val5 += normal * generalPadding;
+		if ((Object)(object)((RaycastHit)(ref bestHit)).collider != (Object)null)
+		{
+			float buildingBlockPadding = GetBuildingBlockPadding(((Object)((RaycastHit)(ref bestHit)).collider).name, yPadding: false, ((Component)((RaycastHit)(ref bestHit)).collider).transform, ((RaycastHit)(ref bestHit)).normal);
+			val5 += normal * buildingBlockPadding;
+		}
 		val5.y = target.position.y;
 		return val5;
 	}
@@ -12819,8 +12919,15 @@ public class Socket_Free_Snappable : Socket_Free
 		//IL_0126: Unknown result type (might be due to invalid IL or missing references)
 		//IL_012b: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0130: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0135: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0144: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0166: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b5: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01b7: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01ba: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01bf: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c4: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01c9: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01d8: Unknown result type (might be due to invalid IL or missing references)
+		//IL_01a4: Unknown result type (might be due to invalid IL or missing references)
 		Vector3 normal = ((RaycastHit)(ref hitA)).normal;
 		Vector3 normal2 = ((RaycastHit)(ref hitB)).normal;
 		normal.y = 0f;
@@ -12839,6 +12946,16 @@ public class Socket_Free_Snappable : Socket_Free
 		Vector3 val7 = planeIntersectionPoint + val6;
 		val7 += normalized * cornerPadding;
 		val7 += normalized * generalPadding;
+		float num = 0f;
+		if ((Object)(object)((RaycastHit)(ref hitA)).collider != (Object)null)
+		{
+			num = Mathf.Max(num, GetBuildingBlockPadding(((Object)((RaycastHit)(ref hitA)).collider).name, yPadding: false, ((Component)((RaycastHit)(ref hitA)).collider).transform, ((RaycastHit)(ref hitA)).normal));
+		}
+		if ((Object)(object)((RaycastHit)(ref hitB)).collider != (Object)null)
+		{
+			num = Mathf.Max(num, GetBuildingBlockPadding(((Object)((RaycastHit)(ref hitB)).collider).name, yPadding: false, ((Component)((RaycastHit)(ref hitB)).collider).transform, ((RaycastHit)(ref hitB)).normal));
+		}
+		val7 += normalized * num;
 		val7.y = target.position.y;
 		return val7;
 	}
@@ -13105,6 +13222,31 @@ private struct SnapResult
 			return result;
 		}
 	}
+}
+
+
+private struct BuildingBlockPadding
+{
+	public enum PaddingType
+	{
+		WeaksideOnly,
+		StrongsideOnly,
+		Both
+	}
+
+	public float YPadding;
+
+	public float NormalPadding;
+
+	public PaddingType PaddingMode;
+}
+
+
+public enum PaddingType
+{
+	WeaksideOnly,
+	StrongsideOnly,
+	Both
 }
 
 
@@ -22040,8 +22182,8 @@ public class DiagnosticsConSys : ConsoleSystem
 		WriteTextToFile(targetFolder + "UnityEngine.Animators.Counts.Enabled.txt", stringBuilder3.ToString());
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static void dump(Arg args)
 	{
 		if (Directory.Exists("diagnostics"))
@@ -29775,215 +29917,6 @@ public enum NotifyMetric : byte
 	WorkerAllocCount,
 	WorkerMem,
 	Count
-}
-
-
-using System.Runtime.InteropServices;
-
-public static class Native
-{
-	[StructLayout(LayoutKind.Explicit)]
-	public struct MonoImage
-	{
-		[FieldOffset(48)]
-		public unsafe byte* AssemblyName;
-	}
-
-	[StructLayout(LayoutKind.Explicit)]
-	public struct MonoClass
-	{
-		private const int ImageOffset = 56;
-
-		[FieldOffset(56)]
-		public unsafe MonoImage* Image;
-
-		[FieldOffset(64)]
-		public unsafe byte* Name;
-
-		[FieldOffset(72)]
-		public unsafe byte* Namespace;
-	}
-
-	[StructLayout(LayoutKind.Explicit)]
-	public struct MonoMethod
-	{
-		[FieldOffset(8)]
-		public unsafe MonoClass* Class;
-
-		[FieldOffset(24)]
-		public unsafe byte* Name;
-	}
-
-	[StructLayout(LayoutKind.Explicit)]
-	public struct MonoVTable
-	{
-		[FieldOffset(0)]
-		public unsafe MonoClass* Class;
-	}
-
-	[StructLayout(LayoutKind.Explicit)]
-	public struct MonoObject
-	{
-		[FieldOffset(0)]
-		public unsafe MonoVTable* VTable;
-	}
-
-	public enum StorageType : byte
-	{
-		FrameLimited,
-		FixedBuffer
-	}
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern void Install();
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern void SetStorageType(byte aStorageType);
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern bool SetFramesToRecord(byte aFrameCount);
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern bool SetFixedBufferCap(uint aMainThreadCap, uint aWorkerThreadCap);
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern void TakeSnapshot();
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern void StartContinuousProfiling(byte aMaxStackDepth);
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern void StopContinuousProfiling();
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern void ResumeContinuousProfiling();
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern void SetContinuousProfilerNotifySettings(NotifyMetric aSetting, uint aValue);
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern bool OnFrameEnd();
-
-	[DllImport("ServerProfiler.Core")]
-	public unsafe static extern void GetData(out Profile** profiles, out byte count);
-
-	[DllImport("ServerProfiler.Core")]
-	public unsafe static extern void GetMemoryUsage(out MemoryState* state);
-
-	[DllImport("ServerProfiler.Core")]
-	public static extern bool ReleaseResources();
-}
-
-
-using System.Runtime.InteropServices;
-
-[StructLayout(LayoutKind.Explicit)]
-public struct MonoImage
-{
-	[FieldOffset(48)]
-	public unsafe byte* AssemblyName;
-}
-
-
-using System.Runtime.InteropServices;
-
-[StructLayout(LayoutKind.Explicit)]
-public struct MonoClass
-{
-	private const int ImageOffset = 56;
-
-	[FieldOffset(56)]
-	public unsafe MonoImage* Image;
-
-	[FieldOffset(64)]
-	public unsafe byte* Name;
-
-	[FieldOffset(72)]
-	public unsafe byte* Namespace;
-}
-
-
-using System.Runtime.InteropServices;
-
-[StructLayout(LayoutKind.Explicit)]
-public struct MonoMethod
-{
-	[FieldOffset(8)]
-	public unsafe MonoClass* Class;
-
-	[FieldOffset(24)]
-	public unsafe byte* Name;
-}
-
-
-using System.Runtime.InteropServices;
-
-[StructLayout(LayoutKind.Explicit)]
-public struct MonoVTable
-{
-	[FieldOffset(0)]
-	public unsafe MonoClass* Class;
-}
-
-
-using System.Runtime.InteropServices;
-
-[StructLayout(LayoutKind.Explicit)]
-public struct MonoObject
-{
-	[FieldOffset(0)]
-	public unsafe MonoVTable* VTable;
-}
-
-
-public enum StorageType : byte
-{
-	FrameLimited,
-	FixedBuffer
-}
-
-
-using ProtoBuf;
-
-public class AggressionTimerAIEvent : BaseAIEvent
-{
-	public float Value { get; private set; }
-
-	public AggressionTimerAIEvent()
-		: base(AIEventType.AggressionTimer)
-	{
-		base.Rate = ExecuteRate.Fast;
-	}
-
-	public override void Init(AIEventData data, BaseEntity owner)
-	{
-		base.Init(data, owner);
-		AggressionTimerAIEventData aggressionTimerData = data.aggressionTimerData;
-		Value = aggressionTimerData.value;
-	}
-
-	public override AIEventData ToProto()
-	{
-		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0011: Expected O, but got Unknown
-		AIEventData obj = base.ToProto();
-		obj.aggressionTimerData = new AggressionTimerAIEventData();
-		obj.aggressionTimerData.value = Value;
-		return obj;
-	}
-
-	public override void Execute(AIMemory memory, AIBrainSenses senses, StateStatus stateStatus)
-	{
-		base.Result = base.Inverted;
-		if (base.Inverted)
-		{
-			base.Result = senses.TimeInAgressiveState < Value;
-		}
-		else
-		{
-			base.Result = senses.TimeInAgressiveState >= Value;
-		}
-	}
 }
 
 

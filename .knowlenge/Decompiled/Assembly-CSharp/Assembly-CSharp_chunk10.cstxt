@@ -1,3 +1,212 @@
+using System.Runtime.InteropServices;
+
+public static class Native
+{
+	[StructLayout(LayoutKind.Explicit)]
+	public struct MonoImage
+	{
+		[FieldOffset(48)]
+		public unsafe byte* AssemblyName;
+	}
+
+	[StructLayout(LayoutKind.Explicit)]
+	public struct MonoClass
+	{
+		private const int ImageOffset = 56;
+
+		[FieldOffset(56)]
+		public unsafe MonoImage* Image;
+
+		[FieldOffset(64)]
+		public unsafe byte* Name;
+
+		[FieldOffset(72)]
+		public unsafe byte* Namespace;
+	}
+
+	[StructLayout(LayoutKind.Explicit)]
+	public struct MonoMethod
+	{
+		[FieldOffset(8)]
+		public unsafe MonoClass* Class;
+
+		[FieldOffset(24)]
+		public unsafe byte* Name;
+	}
+
+	[StructLayout(LayoutKind.Explicit)]
+	public struct MonoVTable
+	{
+		[FieldOffset(0)]
+		public unsafe MonoClass* Class;
+	}
+
+	[StructLayout(LayoutKind.Explicit)]
+	public struct MonoObject
+	{
+		[FieldOffset(0)]
+		public unsafe MonoVTable* VTable;
+	}
+
+	public enum StorageType : byte
+	{
+		FrameLimited,
+		FixedBuffer
+	}
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern void Install();
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern void SetStorageType(byte aStorageType);
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern bool SetFramesToRecord(byte aFrameCount);
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern bool SetFixedBufferCap(uint aMainThreadCap, uint aWorkerThreadCap);
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern void TakeSnapshot();
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern void StartContinuousProfiling(byte aMaxStackDepth);
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern void StopContinuousProfiling();
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern void ResumeContinuousProfiling();
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern void SetContinuousProfilerNotifySettings(NotifyMetric aSetting, uint aValue);
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern bool OnFrameEnd();
+
+	[DllImport("ServerProfiler.Core")]
+	public unsafe static extern void GetData(out Profile** profiles, out byte count);
+
+	[DllImport("ServerProfiler.Core")]
+	public unsafe static extern void GetMemoryUsage(out MemoryState* state);
+
+	[DllImport("ServerProfiler.Core")]
+	public static extern bool ReleaseResources();
+}
+
+
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Explicit)]
+public struct MonoImage
+{
+	[FieldOffset(48)]
+	public unsafe byte* AssemblyName;
+}
+
+
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Explicit)]
+public struct MonoClass
+{
+	private const int ImageOffset = 56;
+
+	[FieldOffset(56)]
+	public unsafe MonoImage* Image;
+
+	[FieldOffset(64)]
+	public unsafe byte* Name;
+
+	[FieldOffset(72)]
+	public unsafe byte* Namespace;
+}
+
+
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Explicit)]
+public struct MonoMethod
+{
+	[FieldOffset(8)]
+	public unsafe MonoClass* Class;
+
+	[FieldOffset(24)]
+	public unsafe byte* Name;
+}
+
+
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Explicit)]
+public struct MonoVTable
+{
+	[FieldOffset(0)]
+	public unsafe MonoClass* Class;
+}
+
+
+using System.Runtime.InteropServices;
+
+[StructLayout(LayoutKind.Explicit)]
+public struct MonoObject
+{
+	[FieldOffset(0)]
+	public unsafe MonoVTable* VTable;
+}
+
+
+public enum StorageType : byte
+{
+	FrameLimited,
+	FixedBuffer
+}
+
+
+using ProtoBuf;
+
+public class AggressionTimerAIEvent : BaseAIEvent
+{
+	public float Value { get; private set; }
+
+	public AggressionTimerAIEvent()
+		: base(AIEventType.AggressionTimer)
+	{
+		base.Rate = ExecuteRate.Fast;
+	}
+
+	public override void Init(AIEventData data, BaseEntity owner)
+	{
+		base.Init(data, owner);
+		AggressionTimerAIEventData aggressionTimerData = data.aggressionTimerData;
+		Value = aggressionTimerData.value;
+	}
+
+	public override AIEventData ToProto()
+	{
+		//IL_0007: Unknown result type (might be due to invalid IL or missing references)
+		//IL_0011: Expected O, but got Unknown
+		AIEventData obj = base.ToProto();
+		obj.aggressionTimerData = new AggressionTimerAIEventData();
+		obj.aggressionTimerData.value = Value;
+		return obj;
+	}
+
+	public override void Execute(AIMemory memory, AIBrainSenses senses, StateStatus stateStatus)
+	{
+		base.Result = base.Inverted;
+		if (base.Inverted)
+		{
+			base.Result = senses.TimeInAgressiveState < Value;
+		}
+		else
+		{
+			base.Result = senses.TimeInAgressiveState >= Value;
+		}
+	}
+}
+
+
 using System;
 using System.Collections.Generic;
 using ConVar;
@@ -5810,8 +6019,8 @@ public abstract class BaseNetworkable : BaseMonoBehaviour, IEntity, NetworkHandl
 		Gib
 	}
 
-	[ReadOnly]
 	[Header("BaseNetworkable")]
+	[ReadOnly]
 	public uint prefabID;
 
 	[Tooltip("If enabled the entity will send to everyone on the server - regardless of position")]
@@ -14813,8 +15022,8 @@ using UnityEngine;
 
 public class BlackjackMachine : BaseCardGameEntity
 {
-	[Header("Blackjack Machine")]
 	[SerializeField]
+	[Header("Blackjack Machine")]
 	private GameObjectRef mainScreenPrefab;
 
 	[SerializeField]
@@ -28759,8 +28968,8 @@ public class SiegeWeaponVehicleAudio : GroundVehicleAudio
 
 	public SoundDefinition reloadCompleteDef;
 
-	[SerializeField]
 	[Header("Rattles")]
+	[SerializeField]
 	private SoundDefinition movementRattleLoop;
 
 	[SerializeField]
@@ -28772,8 +28981,8 @@ public class SiegeWeaponVehicleAudio : GroundVehicleAudio
 	[SerializeField]
 	private float movementRattleGainChangeSpeed = 1f;
 
-	[SerializeField]
 	[Header("Wheels")]
+	[SerializeField]
 	private SoundDefinition tyreRollingSoundDef;
 
 	[SerializeField]
@@ -28988,8 +29197,8 @@ public class CatapultSounds : GroundVehicleAudio
 
 	public SoundDefinition reloadStopDef;
 
-	[Header("Suspension")]
 	[SerializeField]
+	[Header("Suspension")]
 	private SoundDefinition suspensionDef;
 
 	[SerializeField]
@@ -29014,8 +29223,8 @@ public class CatapultSounds : GroundVehicleAudio
 	[SerializeField]
 	private AnimationCurve tireGainCurve;
 
-	[Header("Movement")]
 	[SerializeField]
+	[Header("Movement")]
 	private SoundDefinition movementLoopDef;
 
 	[SerializeField]
@@ -31990,8 +32199,8 @@ using UnityEngine;
 
 public class BikeVehicleAudio : GroundVehicleAudio
 {
-	[SerializeField]
 	[Header("Engine")]
+	[SerializeField]
 	private EngineAudioSet engineAudioSet;
 
 	[Header("Suspension")]
@@ -32145,8 +32354,8 @@ public class BaseBoat : BaseVehicle
 
 	public static int secondsBetweenShoreDrift = 120;
 
-	[Help("Shore drift speed in metres per second")]
 	[ServerVar]
+	[Help("Shore drift speed in metres per second")]
 	public static float drift_speed = 1f;
 
 	[NonSerialized]
@@ -32872,8 +33081,8 @@ public class Buoyancy : ListComponent<Buoyancy>, IServerComponent, IPrefabPrePro
 	public float underwaterDrag = 2f;
 
 	[FormerlySerializedAs("flatWaterLerp")]
-	[Range(0f, 1f)]
 	[Tooltip("How much this object will pay attention to the wave system, 0 = flat water, 1 = full waves (default 1)")]
+	[Range(0f, 1f)]
 	public float wavesEffect = 1f;
 
 	public Action<bool> SubmergedChanged;
@@ -33684,8 +33893,8 @@ public class TugboatSounds : MonoBehaviour, IClientComponent
 	[SerializeField]
 	private Transform bridgeControlsTransform;
 
-	[Header("Water")]
 	[SerializeField]
+	[Header("Water")]
 	private SoundDefinition waterIdleDef;
 
 	[SerializeField]
@@ -33833,8 +34042,8 @@ public class CarSettings
 
 	public bool disableHandbrakes;
 
-	[Range(0f, 1f)]
 	[Header("Front/Rear Vehicle Balance")]
+	[Range(0f, 1f)]
 	public float handlingBias = 0.5f;
 }
 

@@ -1985,9 +1985,9 @@ public enum FishingTag
 
 using UnityEngine;
 
-[RequireComponent(typeof(CommandBufferManager))]
 [RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
+[RequireComponent(typeof(CommandBufferManager))]
 [RequireComponent(typeof(PostOpaqueDepth))]
 public class WaterCamera : MonoBehaviour
 {
@@ -3331,8 +3331,8 @@ public struct FogSettings
 
 using UnityEngine;
 
-[ExecuteInEditMode]
 [RequireComponent(typeof(Camera))]
+[ExecuteInEditMode]
 public class AtmosphereVolumeRenderer : MonoBehaviour
 {
 	public FogMode Mode = (FogMode)3;
@@ -3390,8 +3390,8 @@ public delegate void FillCommandBuffer(CommandBuffer cb);
 
 using UnityEngine;
 
-[RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
+[RequireComponent(typeof(Camera))]
 public class CommandBufferManager : MonoBehaviour
 {
 }
@@ -3516,8 +3516,8 @@ public struct ScreenSpaceRefractionParams
 using UnityEngine;
 
 [RequireComponent(typeof(CommandBufferManager))]
-[RequireComponent(typeof(Camera))]
 [ExecuteInEditMode]
+[RequireComponent(typeof(Camera))]
 public class DeferredExtension : MonoBehaviour
 {
 	public ExtendGBufferParams extendGBuffer = ExtendGBufferParams.Default;
@@ -3548,8 +3548,8 @@ public class DeferredExtensionMesh : MonoBehaviour
 
 using UnityEngine;
 
-[RequireComponent(typeof(CommandBufferManager))]
 [ExecuteInEditMode]
+[RequireComponent(typeof(CommandBufferManager))]
 public class DeferredIndirectLightingPass : MonoBehaviour
 {
 }
@@ -4155,8 +4155,8 @@ public class OceanParameters
 using UnityEngine;
 using UnityEngine.Rendering;
 
-[ExecuteInEditMode]
 [RequireComponent(typeof(CommandBufferManager))]
+[ExecuteInEditMode]
 [RequireComponent(typeof(DeferredIndirectLightingPass))]
 public class SpatialEnvironmentVolumePass : MonoBehaviour
 {
@@ -4270,8 +4270,8 @@ public class FoliageDisplacementManager : SingletonComponent<FoliageDisplacement
 
 using UnityEngine;
 
-[RequireComponent(typeof(MeshRenderer))]
 [ExecuteInEditMode]
+[RequireComponent(typeof(MeshRenderer))]
 [RequireComponent(typeof(MeshFilter))]
 public class Impostor : MonoBehaviour, IClientComponent, IPrefabPreProcess
 {
@@ -5642,8 +5642,8 @@ public class WindZoneEx : MonoBehaviour
 
 using UnityEngine;
 
-[ExecuteInEditMode]
 [RequireComponent(typeof(WindZone))]
+[ExecuteInEditMode]
 public class WindZoneExManager : MonoBehaviour
 {
 	private enum TestMode

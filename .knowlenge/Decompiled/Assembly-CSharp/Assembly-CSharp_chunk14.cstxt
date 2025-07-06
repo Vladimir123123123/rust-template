@@ -5723,8 +5723,8 @@ public class RgbEffects : SingletonComponent<RgbEffects>
 	{
 	}
 
-	[ClientVar(Name = "pulse")]
 	[EditorBrowsable(EditorBrowsableState.Never)]
+	[ClientVar(Name = "pulse")]
 	public static void ConVar_Pulse(Arg args)
 	{
 	}

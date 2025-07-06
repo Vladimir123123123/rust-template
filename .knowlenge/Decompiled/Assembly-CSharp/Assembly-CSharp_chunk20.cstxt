@@ -23735,8 +23735,8 @@ public static class Analytics
 		}
 	}
 
-	[ServerVar(Name = "pending_analytics", Help = "Shows how many analytics events are pending upload")]
 	[ClientVar(Name = "pending_analytics", Help = "Shows how many analytics events are pending upload")]
+	[ServerVar(Name = "pending_analytics", Help = "Shows how many analytics events are pending upload")]
 	public static void GetPendingAnalytics(Arg arg)
 	{
 		StringBuilder stringBuilder = new StringBuilder();

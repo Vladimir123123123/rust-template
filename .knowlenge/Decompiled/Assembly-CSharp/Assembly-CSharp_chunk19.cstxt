@@ -1548,8 +1548,8 @@ public class LegStepAnimatingParameters
 	[FPD_FixedCurveWindow(0f, 0f, 1f, 1.25f, 0.4f, 0.5f, 1f, 1f)]
 	public AnimationCurve MoveToGoalCurve = AnimationCurve.EaseInOut(0f, 0f, 1f, 1f);
 
-	[Tooltip("Making foot motion move towards target not in full linear straight towards target motion but adding a bit curve back (positive value) or forward (negative values) making movement a bit more natural")]
 	[FPD_FixedCurveWindow(0f, -1f, 1f, 1f, 0.4f, 0.6f, 0.9f, 1f)]
+	[Tooltip("Making foot motion move towards target not in full linear straight towards target motion but adding a bit curve back (positive value) or forward (negative values) making movement a bit more natural")]
 	public AnimationCurve SpherizeTrack = AnimationCurve.EaseInOut(0f, 0f, 1f, 0f);
 
 	[Range(0f, 2f)]
@@ -1572,16 +1572,16 @@ public class LegStepAnimatingParameters
 	[Range(0f, 1f)]
 	public float AllowSpeedups = 0.4f;
 
-	[Range(0.1f, 1f)]
 	[Tooltip("You can allow to use opposite leg before idle glue leg adjustement finishes")]
+	[Range(0.1f, 1f)]
 	public float AllowDetachBefore = 1f;
 
-	[FPD_FixedCurveWindow(0f, 0f, 1f, 1f, 1f, 0.6f, 0.6f, 1f)]
 	[Tooltip("Extra hips push power animation curve evaluated on step animation duration.")]
+	[FPD_FixedCurveWindow(0f, 0f, 1f, 1f, 1f, 0.6f, 0.6f, 1f)]
 	public AnimationCurve PushHipsOnMoveCurve;
 
-	[Tooltip("Extra foot ankle rotation animation curve evaluated on step animation duration.")]
 	[FPD_FixedCurveWindow(0f, -1f, 1f, 1f, 0f, 1f, 1f, 1f)]
+	[Tooltip("Extra foot ankle rotation animation curve evaluated on step animation duration.")]
 	public AnimationCurve FootRotationCurve;
 
 	public void RefreshDefaultCurves()
@@ -5979,8 +5979,8 @@ public class FGroundFitter_Demo_NavMesh : MonoBehaviour
 	[Range(0.5f, 50f)]
 	public float RotationSpeed = 3f;
 
-	[Range(0f, 1f)]
 	[Tooltip("Moving Accordingly to rotation after acceleration")]
+	[Range(0f, 1f)]
 	public float DirectMovement = 0.8f;
 
 	public float AnimationSpeedScale = 1f;
@@ -6513,8 +6513,8 @@ public class FGroundFitter_Movement : MonoBehaviour
 	[Tooltip("Protecting from going through walls when slope is very big and ground fitter is jumping into it")]
 	public bool NotFallingThrough;
 
-	[Tooltip("You need collider and rigidbody on object to make it work right - ALSO CHANGE YOUR CAMERA UPDATE CLOCK TO FIXED UPDATE AND USE TIME.fixedDeltaTime - ! For now it can cause errors when jumping, character can go through floor sometimes ! - Will be upgraded in future versions")]
 	[Header("(experimental)")]
+	[Tooltip("You need collider and rigidbody on object to make it work right - ALSO CHANGE YOUR CAMERA UPDATE CLOCK TO FIXED UPDATE AND USE TIME.fixedDeltaTime - ! For now it can cause errors when jumping, character can go through floor sometimes ! - Will be upgraded in future versions")]
 	public bool UsePhysics;
 
 	[Tooltip("Disabling translating object from code and running animation without need to hold minimum movement speed")]
@@ -6578,8 +6578,8 @@ public class FGroundFitter_Movement : MonoBehaviour
 	[HideInInspector]
 	public string SetIsMovingParam = "";
 
-	[Tooltip("If using physical move with collider, assigning to the collider sliding material")]
 	[HideInInspector]
+	[Tooltip("If using physical move with collider, assigning to the collider sliding material")]
 	public bool UseSlidingMat = true;
 
 	private static PhysicMaterial pm_Sliding = null;
@@ -7254,9 +7254,9 @@ using UnityEngine;
 
 public abstract class FGroundFitter_Base : MonoBehaviour
 {
-	[Tooltip("How quick rotation should be corrected to target")]
 	[Header("> Main Variables <", order = 0)]
 	[Space(4f, order = 1)]
+	[Tooltip("How quick rotation should be corrected to target")]
 	[Range(1f, 30f)]
 	public float FittingSpeed = 6f;
 
@@ -7264,9 +7264,9 @@ public abstract class FGroundFitter_Base : MonoBehaviour
 	[Range(0f, 1f)]
 	public float TotalSmoother;
 
+	[HideInInspector]
 	[Space(3f)]
 	[Tooltip("Transform which will be rotated by script, usually it can be the same transform as component's")]
-	[HideInInspector]
 	public Transform TransformToRotate;
 
 	[Tooltip("If you want this script only to change your object's rotation and do nothing with position, untoggle this")]
@@ -7292,8 +7292,8 @@ public abstract class FGroundFitter_Base : MonoBehaviour
 	[Range(0f, 90f)]
 	public float MaxHorizontalRotation = 90f;
 
-	[Space(4f, order = 1)]
 	[Header("> Advanced settings <", order = 0)]
+	[Space(4f, order = 1)]
 	[Tooltip("We should cast raycast from position little higher than foots of your game object")]
 	public float RaycastHeightOffset = 0.5f;
 
@@ -7750,8 +7750,8 @@ public abstract class FGroundFitter_Base_RootMotion : FGroundFitter_Base
 	[SerializeField]
 	protected CharacterController optionalCharContr;
 
-	[SerializeField]
 	[HideInInspector]
+	[SerializeField]
 	protected bool rootMotionRotation = true;
 
 	protected Animator rootMAnimator;
@@ -14392,8 +14392,8 @@ public struct RaycastRayProcessingJob : IJobParallelFor
 	[ReadOnly]
 	public NativeArray<byte> colliderMaterials;
 
-	[NativeDisableParallelForRestriction]
 	[WriteOnly]
+	[NativeDisableParallelForRestriction]
 	public NativeArray<int> colliderHits;
 
 	[NativeMatchesParallelForLength]
@@ -21376,16 +21376,16 @@ public class TonemappingColorGrading : MonoBehaviour
 	[Serializable]
 	public struct BasicsSettings
 	{
-		[Range(-2f, 2f)]
 		[Tooltip("Sets the white balance to a custom color temperature.")]
+		[Range(-2f, 2f)]
 		public float temperatureShift;
 
 		[Tooltip("Sets the white balance to compensate for a green or magenta tint.")]
 		[Range(-2f, 2f)]
 		public float tint;
 
-		[Range(-0.5f, 0.5f)]
 		[Tooltip("Shift the hue of all colors.")]
+		[Range(-0.5f, 0.5f)]
 		[Space]
 		public float hue;
 
@@ -21397,13 +21397,13 @@ public class TonemappingColorGrading : MonoBehaviour
 		[Range(-1f, 1f)]
 		public float vibrance;
 
-		[Tooltip("Brightens or darkens all colors.")]
 		[Range(0f, 10f)]
+		[Tooltip("Brightens or darkens all colors.")]
 		public float value;
 
 		[Space]
-		[Tooltip("Expands or shrinks the overall range of tonal values.")]
 		[Range(0f, 2f)]
+		[Tooltip("Expands or shrinks the overall range of tonal values.")]
 		public float contrast;
 
 		[Range(0.01f, 5f)]
@@ -21520,12 +21520,12 @@ public class TonemappingColorGrading : MonoBehaviour
 		[IndentedGroup]
 		public BasicsSettings basics;
 
-		[Space]
 		[ChannelMixer]
+		[Space]
 		public ChannelMixerSettings channelMixer;
 
-		[Space]
 		[IndentedGroup]
+		[Space]
 		public CurvesSettings curves;
 
 		[Space]
@@ -21825,16 +21825,16 @@ using UnityEngine;
 [Serializable]
 public struct BasicsSettings
 {
-	[Range(-2f, 2f)]
 	[Tooltip("Sets the white balance to a custom color temperature.")]
+	[Range(-2f, 2f)]
 	public float temperatureShift;
 
 	[Tooltip("Sets the white balance to compensate for a green or magenta tint.")]
 	[Range(-2f, 2f)]
 	public float tint;
 
-	[Range(-0.5f, 0.5f)]
 	[Tooltip("Shift the hue of all colors.")]
+	[Range(-0.5f, 0.5f)]
 	[Space]
 	public float hue;
 
@@ -21846,13 +21846,13 @@ public struct BasicsSettings
 	[Range(-1f, 1f)]
 	public float vibrance;
 
-	[Tooltip("Brightens or darkens all colors.")]
 	[Range(0f, 10f)]
+	[Tooltip("Brightens or darkens all colors.")]
 	public float value;
 
 	[Space]
-	[Tooltip("Expands or shrinks the overall range of tonal values.")]
 	[Range(0f, 2f)]
+	[Tooltip("Expands or shrinks the overall range of tonal values.")]
 	public float contrast;
 
 	[Range(0.01f, 5f)]
@@ -21982,12 +21982,12 @@ public struct ColorGradingSettings
 	[IndentedGroup]
 	public BasicsSettings basics;
 
-	[Space]
 	[ChannelMixer]
+	[Space]
 	public ChannelMixerSettings channelMixer;
 
-	[Space]
 	[IndentedGroup]
+	[Space]
 	public CurvesSettings curves;
 
 	[Space]
@@ -25910,20 +25910,20 @@ public class UICircle : UIPrimitiveBase
 	[Tooltip("The Arc Invert property will invert the construction of the Arc.")]
 	public bool ArcInvert = true;
 
-	[Range(0f, 1f)]
 	[Tooltip("The Arc property is a percentage of the entire circumference of the circle.")]
+	[Range(0f, 1f)]
 	public float Arc = 1f;
 
-	[Tooltip("The Arc Steps property defines the number of segments that the Arc will be divided into.")]
 	[Range(0f, 1000f)]
+	[Tooltip("The Arc Steps property defines the number of segments that the Arc will be divided into.")]
 	public int ArcSteps = 100;
 
 	[Range(0f, 360f)]
 	[Tooltip("The Arc Rotation property permits adjusting the geometry orientation around the Z axis.")]
 	public int ArcRotation;
 
-	[Range(0f, 1f)]
 	[Tooltip("The Progress property allows the primitive to be used as a progression indicator.")]
+	[Range(0f, 1f)]
 	public float Progress;
 
 	private float _progress;
@@ -26200,8 +26200,8 @@ using UnityEngine.UI.Extensions;
 [AddComponentMenu("UI/Extensions/Primitives/UI Circle Simple")]
 public class UICircleSimple : UIPrimitiveBase
 {
-	[Tooltip("The Arc Steps property defines the number of segments that the Arc will be divided into.")]
 	[Range(0f, 1000f)]
+	[Tooltip("The Arc Steps property defines the number of segments that the Arc will be divided into.")]
 	public int ArcSteps = 100;
 
 	public bool Fill = true;
@@ -26426,8 +26426,8 @@ public class UICornerCut : UIPrimitiveBase
 {
 	public Vector2 cornerSize = new Vector2(16f, 16f);
 
-	[SerializeField]
 	[Header("Corners to cut")]
+	[SerializeField]
 	private bool m_cutUL = true;
 
 	[SerializeField]
@@ -27978,8 +27978,8 @@ public class UILineRendererList : UIPrimitiveBase
 	[SerializeField]
 	internal float lineThickness = 2f;
 
-	[SerializeField]
 	[Tooltip("Use the relative bounds of the Rect Transform (0,0 -> 0,1) or screen space coordinates")]
+	[SerializeField]
 	internal bool relativeSize;
 
 	[Tooltip("Do the points identify a single line or split pairs of lines")]

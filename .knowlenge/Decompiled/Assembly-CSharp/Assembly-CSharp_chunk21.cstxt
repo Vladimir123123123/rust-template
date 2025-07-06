@@ -1068,8 +1068,8 @@ public class ModelViewer_RenderParameters
 	[Range(0f, 2f)]
 	public float sunShadowBias = 0.01f;
 
-	[Header("                ")]
 	[Header("Contact Shadows")]
+	[Header("                ")]
 	public bool enableContactShadows = true;
 
 	[Range(0f, 1f)]
@@ -1096,8 +1096,8 @@ public class ModelViewer_RenderParameters
 	[Range(0f, 1f)]
 	public float traceBias = 0.03f;
 
-	[Header("                ")]
 	[Header("Ambient Occlusion")]
+	[Header("                ")]
 	public bool enableAmbientOcclusion = true;
 
 	public SampleCountLevel SampleCount = SampleCountLevel.Medium;
@@ -1140,8 +1140,8 @@ public class ModelViewer_RenderParameters
 
 	public Color FadeToTint = Color.black;
 
-	[Tooltip("Final Radius parameter.")]
 	[Range(0f, 32f)]
+	[Tooltip("Final Radius parameter.")]
 	public float FadeToRadius = 2f;
 
 	[Tooltip("Final PowerExponent parameter.")]
@@ -1231,8 +1231,8 @@ public class ModelViewer_MainCameraParameters
 
 	public float followLag;
 
-	[Header("                ")]
 	[Header("Lens")]
+	[Header("                ")]
 	[Range(0.01f, 360f)]
 	public float fieldOfView = 15f;
 
@@ -1248,8 +1248,8 @@ public class ModelViewer_MainCameraParameters
 	[Range(0.01f, 100f)]
 	public float Ratio = 3f;
 
-	[Header("Focus")]
 	[Header("                ")]
+	[Header("Focus")]
 	public bool depthOfField;
 
 	public float focalLength = 3f;
@@ -1262,9 +1262,9 @@ public class ModelViewer_MainCameraParameters
 
 	public bool debugMode;
 
+	[Header("                ")]
 	[Range(0f, 360f)]
 	[Header("Motion Blur")]
-	[Header("                ")]
 	public float shutterAngle;
 
 	[Header("Distortion")]
@@ -1287,18 +1287,18 @@ public class ModelViewer_MainCameraParameters
 	[Range(-100f, 100f)]
 	public float Saturation;
 
-	[Header("Sharpen")]
 	[Header("                ")]
+	[Header("Sharpen")]
 	public float Strength;
 
 	public float limit;
 
-	[Header("                ")]
 	[Header("God Rays")]
+	[Header("                ")]
 	public bool GodRays = true;
 
-	[Header("                ")]
 	[Header("Bloom")]
+	[Header("                ")]
 	public float Brightness = 0.15f;
 
 	public float Threshold = 1f;
@@ -1362,13 +1362,13 @@ using UnityEngine;
 [Serializable]
 public class ModelViewer_SkyParameters
 {
-	[Header("Sky")]
 	[Range(0f, 1f)]
+	[Header("Sky")]
 	public float skyBrightness = 1f;
 
-	[Header("                ")]
-	[Header("Time of Day")]
 	[Tooltip("Current hour of the day.")]
+	[Header("Time of Day")]
+	[Header("                ")]
 	public float Hour = 9f;
 
 	[Tooltip("Current day of the month.")]
@@ -1377,24 +1377,24 @@ public class ModelViewer_SkyParameters
 	[Tooltip("Current month of the year.")]
 	public int Month = 5;
 
-	[TOD_Range(1f, 9999f)]
 	[Tooltip("Current year.")]
+	[TOD_Range(1f, 9999f)]
 	public int Year = 2000;
 
 	[Range(-90f, 90f)]
 	[Tooltip("Latitude of the current location in degrees.")]
 	public float Latitude = -10f;
 
-	[Range(-180f, 180f)]
 	[Tooltip("Longitude of the current location in degrees.")]
+	[Range(-180f, 180f)]
 	public float Longitude = -25f;
 
 	[Tooltip("UTC/GMT time zone of the current location in hours.")]
 	[Range(-14f, 14f)]
 	public float UTC;
 
-	[Header("                ")]
 	[Header("Atmosphere")]
+	[Header("                ")]
 	public float skyContrast = 1.2f;
 
 	public float skyFogginess = 0.2f;
@@ -1421,8 +1421,8 @@ public class modelviewer : MonoBehaviour, IEditorComponent
 	public ModelViewer_SkyParameters Sky;
 
 	[Header("                ")]
-	[Header("Junk to clean up:")]
 	[Header("                ")]
+	[Header("Junk to clean up:")]
 	public GameObject ruleOfThirds;
 
 	public GameObject goldenRatio;
@@ -4798,16 +4798,16 @@ public class AntiHack : ConsoleSystem
 	[Help("movement curve step size, lower value = less false positives")]
 	public static float noclip_stepsize = 0.1f;
 
-	[Help("movement curve max steps, lower value = more false positives")]
 	[ServerVar]
+	[Help("movement curve max steps, lower value = more false positives")]
 	public static int noclip_maxsteps = 15;
 
 	[ServerVar]
 	[Help("0 == disabled, 1 == simple, 2 == advanced, 3 == vertical swim protection")]
 	public static int speedhack_protection = 3;
 
-	[Help("whether or not to reject movement when speedhack is detected")]
 	[ServerVar]
+	[Help("whether or not to reject movement when speedhack is detected")]
 	public static bool speedhack_reject = true;
 
 	[Help("violation penalty to hand out when speedhack is detected")]
@@ -4846,8 +4846,8 @@ public class AntiHack : ConsoleSystem
 	[ServerVar]
 	public static float flyhack_forgiveness_vertical_inertia = 7f;
 
-	[ServerVar]
 	[Help("distance threshold to assume flyhacking, lower value = more false positives")]
+	[ServerVar]
 	public static float flyhack_forgiveness_horizontal = 1.5f;
 
 	[Help("distance threshold to assume flyhacking, lower value = more false positives")]
@@ -4858,32 +4858,32 @@ public class AntiHack : ConsoleSystem
 	[ServerVar]
 	public static float flyhack_extrusion = 2f;
 
-	[ServerVar]
 	[Help("collider margin when checking for flyhacking")]
+	[ServerVar]
 	public static float flyhack_margin = 0.1f;
 
-	[ServerVar]
 	[Help("movement curve step size, lower value = less false positives")]
+	[ServerVar]
 	public static float flyhack_stepsize = 0.1f;
 
 	[ServerVar]
 	[Help("movement curve max steps, lower value = more false positives")]
 	public static int flyhack_maxsteps = 15;
 
-	[ServerVar]
 	[Help("Optimizes checks by using cached water info. Originally off")]
+	[ServerVar]
 	public static bool flyhack_usecachedstate = true;
 
-	[Help("serverside fall damage, requires flyhack_protection >= 2 for proper functionality")]
 	[ServerVar]
+	[Help("serverside fall damage, requires flyhack_protection >= 2 for proper functionality")]
 	public static bool serverside_fall_damage = false;
 
-	[Help("0 == disabled, 1 == speed, 2 == speed + entity, 3 == speed + entity + LOS, 4 == speed + entity + LOS + trajectory, 5 == speed + entity + LOS + trajectory + update, 6 == speed + entity + LOS + trajectory + tickhistory")]
 	[ServerVar]
+	[Help("0 == disabled, 1 == speed, 2 == speed + entity, 3 == speed + entity + LOS, 4 == speed + entity + LOS + trajectory, 5 == speed + entity + LOS + trajectory + update, 6 == speed + entity + LOS + trajectory + tickhistory")]
 	public static int projectile_protection = 6;
 
-	[Help("violation penalty to hand out when projectile hack is detected")]
 	[ServerVar]
+	[Help("violation penalty to hand out when projectile hack is detected")]
 	public static float projectile_penalty = 0f;
 
 	[ServerVar]
@@ -5038,12 +5038,12 @@ public class AntiHack : ConsoleSystem
 	[Help("line of sight sphere cast radius, 0 == raycast")]
 	public static float eye_losradius = 0.162f;
 
-	[ServerVar]
 	[Help("violation penalty to hand out when eye history mismatch is detected")]
+	[ServerVar]
 	public static float eye_history_penalty = 100f;
 
-	[ServerVar]
 	[Help("how much forgiveness to add when checking the distance between player tick history and player eye history")]
+	[ServerVar]
 	public static float eye_history_forgiveness = 0.1f;
 
 	[ServerVar]
@@ -5054,8 +5054,8 @@ public class AntiHack : ConsoleSystem
 	[Help("line of sight sphere cast radius, 0 == raycast")]
 	public static float build_losradius = 0.01f;
 
-	[ServerVar]
 	[Help("line of sight sphere cast radius, 0 == raycast")]
+	[ServerVar]
 	public static float build_losradius_sleepingbag = 0.3f;
 
 	[ServerVar]
@@ -5086,20 +5086,20 @@ public class AntiHack : ConsoleSystem
 	[Help("number of blocked grids permitted before line-of-sight fails")]
 	public static int server_occlusion_blocked_grid_threshold = 0;
 
-	[Help("number of neighbour checks permitted before line-of-sight fails")]
 	[ServerVar]
+	[Help("number of neighbour checks permitted before line-of-sight fails")]
 	public static int server_occlusion_neighbour_threshold = 2;
 
-	[Help("whether to use server occlusion caching")]
 	[ServerVar]
+	[Help("whether to use server occlusion caching")]
 	public static bool server_occlusion_caching = true;
 
-	[ServerVar]
 	[Help("whether to save sub grid for map to a file on first time init, faster subsequent server launching")]
+	[ServerVar]
 	public static bool server_occlusion_save_grid = true;
 
-	[ServerVar]
 	[Help("whether to use neighbour threshold limitations")]
+	[ServerVar]
 	public static bool server_occlusion_use_neighbour_thresholds = false;
 
 	[ServerVar]
@@ -5460,8 +5460,8 @@ public class Batching : ConsoleSystem
 	[ClientVar(ClientAdmin = true)]
 	public static int renderer_submeshes = 1;
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static int verbose = 0;
 }
 
@@ -5562,8 +5562,8 @@ public class Chat : ConsoleSystem
 	[ReplicatedVar]
 	public static bool hideChatInTutorial = true;
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static bool enabled = true;
 
 	[ServerVar(Help = "Number of messages to keep in memory for chat history")]
@@ -6201,8 +6201,8 @@ public class Console : ConsoleSystem
 		return Output.HistoryOutput.Skip(num);
 	}
 
-	[Help("Search the console for a particular string")]
 	[ServerVar]
+	[Help("Search the console for a particular string")]
 	public static IEnumerable<Output.Entry> search(Arg arg)
 	{
 		string search = arg.GetString(0, (string)null);
@@ -6218,8 +6218,8 @@ public class Console : ConsoleSystem
 [Factory("construct")]
 public class Construct : ConsoleSystem
 {
-	[Help("How many minutes before a placed frame gets destroyed")]
 	[ServerVar]
+	[Help("How many minutes before a placed frame gets destroyed")]
 	public static float frameminutes = 30f;
 }
 
@@ -7480,8 +7480,8 @@ using UnityEngine;
 [Factory("data")]
 public class Data : ConsoleSystem
 {
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void export(Arg args)
 	{
 		string @string = args.GetString(0, "none");
@@ -7559,8 +7559,8 @@ public class Debugging : ConsoleSystem
 {
 	private const string NO_RECOVER_ARG = "--no-recover";
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static bool checktriggers = false;
 
 	[ServerVar]
@@ -7581,8 +7581,8 @@ public class Debugging : ConsoleSystem
 
 	private static HashSet<BasePlayer> invisiblePlayers = new HashSet<BasePlayer>();
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static bool callbacks = false;
 
 	[ServerVar]
@@ -7599,8 +7599,8 @@ public class Debugging : ConsoleSystem
 		}
 	}
 
-	[ClientVar(ClientAdmin = true)]
 	[ServerVar]
+	[ClientVar(ClientAdmin = true)]
 	public static void renderinfo(Arg arg)
 	{
 		RenderInfo.GenerateReport();
@@ -9526,8 +9526,8 @@ public class Entity : ConsoleSystem
 		}
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void find_entity(Arg args)
 	{
 		string filter = args.GetString(0, "");
@@ -9535,8 +9535,8 @@ public class Entity : ConsoleSystem
 		args.ReplyWith(((object)entityTable).ToString());
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void find_id(Arg args)
 	{
 		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
@@ -9548,8 +9548,8 @@ public class Entity : ConsoleSystem
 		args.ReplyWith(((object)entityTable).ToString());
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void find_group(Arg args)
 	{
 		uint filter = args.GetUInt(0, 0u);
@@ -9557,8 +9557,8 @@ public class Entity : ConsoleSystem
 		args.ReplyWith(((object)entityTable).ToString());
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void find_parent(Arg args)
 	{
 		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
@@ -9570,8 +9570,8 @@ public class Entity : ConsoleSystem
 		args.ReplyWith(((object)entityTable).ToString());
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static void find_status(Arg args)
 	{
 		string filter = args.GetString(0, "");
@@ -9579,8 +9579,8 @@ public class Entity : ConsoleSystem
 		args.ReplyWith(((object)entityTable).ToString());
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static void find_radius(Arg args)
 	{
 		BasePlayer player = args.Player();
@@ -9592,8 +9592,8 @@ public class Entity : ConsoleSystem
 		}
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static void find_self(Arg args)
 	{
 		//IL_0027: Unknown result type (might be due to invalid IL or missing references)
@@ -10914,8 +10914,8 @@ public class Global : ConsoleSystem
 		ServerPerformance.DoReport();
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static void objects(Arg args)
 	{
 		Object[] array = Object.FindObjectsOfType<Object>();
@@ -11738,22 +11738,22 @@ public class Global : ConsoleSystem
 		ConVar.GC.unload();
 	}
 
-	[ClientVar]
 	[ServerVar(ServerUser = true)]
+	[ClientVar]
 	public static void version(Arg arg)
 	{
 		arg.ReplyWith($"Protocol: {Protocol.printable}\nBuild Date: {BuildInfo.Current.BuildDate}\nUnity Version: {Application.unityVersion}\nChangeset: {BuildInfo.Current.Scm.ChangeId}\nBranch: {BuildInfo.Current.Scm.Branch}");
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static void sysinfo(Arg arg)
 	{
 		arg.ReplyWith(SystemInfoGeneralText.currentInfo);
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static void sysuid(Arg arg)
 	{
 		arg.ReplyWith(SystemInfo.deviceUniqueIdentifier);
@@ -11980,8 +11980,8 @@ public class Global : ConsoleSystem
 		Pool.FreeUnmanaged<DroppedItem>(ref list);
 	}
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static string printAllScenesInBuild(Arg args)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
@@ -12313,8 +12313,10 @@ public class GraphicsSettings : ConsoleSystem
 		}
 		set
 		{
-			QualitySettings.globalTextureMipmapLimit = Mathf.Clamp(value, 0, 3);
-			if ((Object)(object)SingletonComponent<FoliageGrid>.Instance != (Object)null)
+			value = Mathf.Clamp(value, 0, 3);
+			bool num = QualitySettings.globalTextureMipmapLimit != value;
+			QualitySettings.globalTextureMipmapLimit = value;
+			if (num && (Object)(object)SingletonComponent<FoliageGrid>.Instance != (Object)null)
 			{
 				SingletonComponent<FoliageGrid>.Instance.OnGlobalTextureMipmapLimitChange();
 			}
@@ -14902,8 +14904,8 @@ public class Player : ConsoleSystem
 		}
 	}
 
-	[ClientVar(AllowRunFromServer = true)]
 	[ServerUserVar]
+	[ClientVar(AllowRunFromServer = true)]
 	public static void cinematic_play(Arg arg)
 	{
 		if (!arg.HasArgs(1) || !arg.IsServerside)
@@ -15602,16 +15604,16 @@ using UnityEngine;
 [Factory("pool")]
 public class Pool : ConsoleSystem
 {
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static int mode = 2;
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static bool prewarm = true;
 
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
 	public static bool enabled = true;
 
 	[ServerVar]
@@ -15789,16 +15791,16 @@ public class Pool : ConsoleSystem
 		Pool.Clear(arg.GetString(0, string.Empty));
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void clear_prefabs(Arg arg)
 	{
 		string @string = arg.GetString(0, string.Empty);
 		GameManager.server.pool.Clear(@string);
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void clear_assets(Arg arg)
 	{
 		AssetPool.Clear(arg.GetString(0, string.Empty));
@@ -15992,14 +15994,14 @@ public class Profile : ConsoleSystem
 	{
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void stop(Arg arg)
 	{
 	}
 
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static void flush_analytics(Arg arg)
 	{
 	}
@@ -16240,8 +16242,8 @@ public class Render : ConsoleSystem
 
 	public static bool IsMultidrawEnabled => multidraw;
 
-	[ClientVar(Name = "print_tree_counts", ClientAdmin = true, Help = "Print off count of trees to ensure server sent them all")]
 	[ServerVar]
+	[ClientVar(Name = "print_tree_counts", ClientAdmin = true, Help = "Print off count of trees to ensure server sent them all")]
 	public static void tree_entities(Arg arg)
 	{
 		StringBuilder stringBuilder = new StringBuilder();
@@ -16249,8 +16251,8 @@ public class Render : ConsoleSystem
 		arg.ReplyWith(stringBuilder.ToString());
 	}
 
-	[ClientVar(Name = "print_global_entities", ClientAdmin = true, Help = "Print off count of global building entities on the client")]
 	[ServerVar(Name = "print_global_entities", Help = "Print off count of global building entities on the server")]
+	[ClientVar(Name = "print_global_entities", ClientAdmin = true, Help = "Print off count of global building entities on the client")]
 	public static void print_global_entities(Arg arg)
 	{
 		if (IsInstancingDisabled)
@@ -18898,8 +18900,8 @@ using UnityEngine;
 [Factory("vehicle")]
 public class vehicle : ConsoleSystem
 {
-	[ServerVar]
 	[Help("how long until boat corpses despawn (excluding tugboat - use tugboat_corpse_seconds)")]
+	[ServerVar]
 	public static float boat_corpse_seconds = 300f;
 
 	[ServerVar]
@@ -19194,8 +19196,8 @@ public class Vis : ConsoleSystem
 	[Help("Turns on debug display of lerp")]
 	public static bool lerp;
 
-	[Help("Turns on debug display of damages")]
 	[ServerVar]
+	[Help("Turns on debug display of damages")]
 	public static bool damage;
 
 	[ServerVar]
@@ -19203,29 +19205,29 @@ public class Vis : ConsoleSystem
 	[ClientVar]
 	public static bool attack;
 
-	[Help("Turns on debug display of protection")]
-	[ClientVar]
 	[ServerVar]
+	[ClientVar]
+	[Help("Turns on debug display of protection")]
 	public static bool protection;
 
 	[Help("Turns on debug display of weakspots")]
 	[ServerVar]
 	public static bool weakspots;
 
-	[ServerVar]
 	[Help("Show trigger entries")]
+	[ServerVar]
 	public static bool triggers;
 
-	[ServerVar]
 	[Help("Turns on debug display of hitboxes")]
+	[ServerVar]
 	public static bool hitboxes;
 
 	[Help("Turns on debug display of line of sight checks")]
 	[ServerVar]
 	public static bool lineofsight;
 
-	[Help("Turns on debug display of senses, which are received by Ai")]
 	[ServerVar]
+	[Help("Turns on debug display of senses, which are received by Ai")]
 	public static bool sense;
 }
 
@@ -19946,8 +19948,8 @@ using UnityEngine;
 [Factory("world")]
 public class World : ConsoleSystem
 {
-	[ServerVar]
 	[ClientVar]
+	[ServerVar]
 	public static bool cache = true;
 
 	[ClientVar]
@@ -23460,8 +23462,8 @@ public class ModularCarAudio : GroundVehicleAudio
 	[SerializeField]
 	private float skidMaxSlip = 25f;
 
-	[Header("Movement & Suspension")]
 	[SerializeField]
+	[Header("Movement & Suspension")]
 	private SoundDefinition movementStartOneshot;
 
 	[SerializeField]
@@ -25397,8 +25399,8 @@ using UnityEngine.AI;
 [DefaultExecutionOrder(-103)]
 public class AiManager : SingletonComponent<AiManager>, IServerComponent
 {
-	[Header("Cover System")]
 	[SerializeField]
+	[Header("Cover System")]
 	public bool UseCover = true;
 
 	public float CoverPointVolumeCellSize = 20f;

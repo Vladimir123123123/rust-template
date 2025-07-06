@@ -159,13 +159,13 @@ public class AutoTurret : ContainerIOEntity, IRemoteControllable, IHostileWarnin
 
 	private Matrix4x4 gunRoot;
 
-	private Matrix4x4 gunAimInitialLS;
+	protected Matrix4x4 gunAimInitialLS;
 
 	private Quaternion gunAimInitialRot;
 
-	private Quaternion gunAimRotLS;
+	protected Quaternion gunAimRotLS;
 
-	private Transform cachedTransf;
+	protected Transform cachedTransf;
 
 	public double nextForcedAimTime;
 

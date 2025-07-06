@@ -1122,8 +1122,8 @@ using UnityEngine;
 
 public class DiverPropulsionVehicleAudio : MonoBehaviour
 {
-	[Header("Engine")]
 	[SerializeField]
+	[Header("Engine")]
 	private SoundDefinition engineStartSound;
 
 	[SerializeField]
@@ -1141,8 +1141,8 @@ public class DiverPropulsionVehicleAudio : MonoBehaviour
 	[SerializeField]
 	private SoundDefinition engineActiveLoopDef;
 
-	[Header("Propeller")]
 	[SerializeField]
+	[Header("Propeller")]
 	private SoundDefinition propellerLoopSoundDef;
 
 	[SerializeField]
@@ -23241,8 +23241,8 @@ public class FoliagePlacement : ScriptableObject
 
 	public float RangeFade = 0.1f;
 
-	[Range(0f, 1f)]
 	[Header("LOD")]
+	[Range(0f, 1f)]
 	public float DistanceDensity;
 
 	[Range(1f, 2f)]
